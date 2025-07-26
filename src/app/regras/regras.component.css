@@ -31,35 +31,6 @@ p{
   color: #0095d7;
 }
 
-.tipo-regras-selecao {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.tipo-regras-selecao select {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 100%; 
-  max-width: 300px; 
-  background-color: white;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20512%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M192%20256L64%20128v256l128-128z%22%2F%3E%3C%2Fsvg%3E');
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
-}
-
-.tipo-regras-selecao select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-}
-
 .conteudo-regras {
   border-top: 1px solid #eee;
   padding-top: 20px;
@@ -105,11 +76,6 @@ p{
     font-size: 1.3em; 
   }
 
-  .tipo-regras-selecao select {
-    font-size: 15px; 
-    padding: 8px; 
-  }
-
   .conteudo-regras {
     padding-top: 15px; 
   }
@@ -118,5 +84,9 @@ p{
     padding: 12px; 
     font-size: 0.95em; 
   }
+}
+
+.tipo-container{
+  margin-bottom: 10px;
 }
 

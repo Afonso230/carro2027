@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router'; // Importe RouterModule e Routes
-
-import { AppRoutingModule } from './app-routing.module'; // Mantenha se ainda usa para outras coisas
+import { RouterModule, Routes } from '@angular/router'; 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { QuotasComponent } from './quotas/quotas.component';
@@ -11,6 +10,8 @@ import { NotificacoesComponent } from './notificacoes/notificacoes.component';
 import { AtasComponent } from './atas/atas.component';
 import { RegrasComponent } from './regras/regras.component';
 import { HomeComponent } from './home/home.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 export const routes: Routes = [
     {
@@ -52,10 +53,13 @@ export const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    
+    MatExpansionModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

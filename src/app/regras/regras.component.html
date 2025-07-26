@@ -6,24 +6,16 @@
     </p> 
   </h2>
   <h3>Tipos de Regras</h3>
-
-  <select (change)="selecionarTipoRegra($event)">
-    <option value="">Selecione um tipo de regra</option>
-    <option value="quotas">Regras de Quotas</option>
-    <option value="convivios">Regras de Convívios</option>
-    <option value="reunioes">Regras de Reuniões</option>
-    <option value="rifas">Regras de Rifas</option>
-    <option value="jantares">Regras Jantares de Curso</option>
-  </select>
-  <div class="conteudo-regras">
-    <h3>Regras de {{ tipoRegraSelecionado | titlecase }}</h3>
-    <div *ngIf="regrasExibidas.length > 0; else noRulesSelected">
-      <ul>
-        <li *ngFor="let regra of regrasExibidas">{{ regra }}</li>
-      </ul>
-    </div>
-    <ng-template #noRulesSelected>
-      <p>Selecione um tipo de regra para visualizar o conteúdo.</p>
-    </ng-template>
-  </div>
+  <mat-accordion *ngFor="let tipo of todasAsRegras">
+    <mat-expansion-panel class="tipo-container">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{tipo.titulo}} </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="conteudo-regras">
+        <ul>
+          <li *ngFor="let regra of tipo.regras">{{ regra }}</li>
+        </ul>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
