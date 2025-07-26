@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --transition-speed: 600ms;
+    /* events section*/
+    --bg-primary-color: #ececec;
+    --bg-secondary-color: black;
+    --bg-color: var(--bg-primary-color);
+    --text-primary-color: black;
+    --text-secondary-color: #ececec;
+    --text-color: var(--text-primary-color);
+    --day-cell-primary-color:#cdcccc;
+    --day-cell-secondary-color:#201f1f;
+    --day-cell-color: var(--day-cell-primary-color);
+    --circle-day-primary-color:#38B6FF;
+    --circle-day-secondary-color:#104363;
+    --circle-day-color:var(--circle-day-primary-color);
+    --font-family: "Poppins", sans-serif;
+}
+
+@font-face {
+    font-family: nav-bar;
+    src: url(/assets/fonts/BebasNeue-Regular.otf);
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,html {
+    margin:0;
+    padding:0;
+}
+
+body{
+  background-color:#3c5278 ;
+}
+
+body::-webkit-scrollbar{
+    width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track{
+    background: #1e1e24 ;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #38B6FF;
+}
+
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

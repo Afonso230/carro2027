@@ -1,0 +1,29 @@
+<div class="regras-container">
+  <h2>Regras 
+    <p>Carro 
+      <span class="highlight-bioquimica">Bioquimica</span> 
+      2027
+    </p> 
+  </h2>
+  <h3>Tipos de Regras</h3>
+
+  <select (change)="selecionarTipoRegra($event)">
+    <option value="">Selecione um tipo de regra</option>
+    <option value="quotas">Regras de Quotas</option>
+    <option value="convivios">Regras de Convívios</option>
+    <option value="reunioes">Regras de Reuniões</option>
+    <option value="rifas">Regras de Rifas</option>
+    <option value="jantares">Regras Jantares de Curso</option>
+  </select>
+  <div class="conteudo-regras">
+    <h3>Regras de {{ tipoRegraSelecionado | titlecase }}</h3>
+    <div *ngIf="regrasExibidas.length > 0; else noRulesSelected">
+      <ul>
+        <li *ngFor="let regra of regrasExibidas">{{ regra }}</li>
+      </ul>
+    </div>
+    <ng-template #noRulesSelected>
+      <p>Selecione um tipo de regra para visualizar o conteúdo.</p>
+    </ng-template>
+  </div>
+</div>
