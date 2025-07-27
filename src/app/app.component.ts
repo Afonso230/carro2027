@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'carro27';
+
+  opened = false;
+
+  triggerNavbar() {
+    this.opened = !this.opened;
+  }
 }
