@@ -12,6 +12,7 @@ import { RegrasComponent } from './regras/regras.component';
 import { HomeComponent } from './home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon'
 
 export const routes: Routes = [
     {
@@ -55,7 +56,8 @@ export const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     
-    MatExpansionModule
+    MatExpansionModule,
+    MatIconModule
   ],
   providers: [
     provideClientHydration(),
