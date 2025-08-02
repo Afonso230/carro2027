@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CalendarioService, Event } from '../calendario.service';
 
 @Component({
   selector: 'app-calendario',
@@ -16,12 +17,21 @@ month = new Date().getMonth()
   calendarDays = []
   today = new Date ()
   monthAndYear = ""
-  eventList : Event[] = []
   dateSelected = ""
   
+  eventList : Event[] = []
+
+  constructor(
+    private calendarService:CalendarioService
+  ){}
+
   ngOnInit(){
-      this.updateMonth()
-      this.buildCalendar()
+      this.calendarService.getEvents().subscribe((events)=>{
+        this.eventList=events 
+        this.updateMonth()
+        this.buildCalendar()
+        console.log(this.eventList)
+      })
   }
 
   prevMonth() {
@@ -66,9 +76,15 @@ month = new Date().getMonth()
           var currentDay = i - firstDay.getDay() + 1
           // verifying if this cell corresponds to a day in the month
           if (currentDay>=1 && currentDay<=numberDays){
-            this.calendarDays.push(currentDay)
+            this.calendarDays.push({
+              day: currentDay,
+              hasEvents: this.eventList.some((event)=>{
+                var eventDay = new Date(event.data)
+                return eventDay.getDate() === currentDay && eventDay.getMonth() === this.month && eventDay.getFullYear() === this.year
+              })
+            })
           } else {
-            this.calendarDays.push("")
+            this.calendarDays.push({day:""})
           }
         }
   }

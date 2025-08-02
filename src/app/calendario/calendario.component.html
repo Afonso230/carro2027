@@ -23,8 +23,8 @@
                 <div class="days calendar-grid" id="calendar-days">
                     <!--goes to the variable calendarDays and puts each element in a variable called day. proceeds to print that element with the class "day"-->
                     <div *ngFor="let day of calendarDays" class="day" [class.day-selected] = "dateSelected === day + ' ' + monthAndYear">
-                        <div *ngIf="day === today.getDate() && month === today.getMonth() && year === today.getFullYear(); else calendarDays" class="circle-day">{{day}}</div>
-                        <ng-template #calendarDays>{{day}}</ng-template>
+                        <div [ngStyle]="day.day === today.getDate() && month === today.getMonth() && year === today.getFullYear()?{'background-color':'var(--circle-day-color)'}:{'background-color':'#ffffff00'}" class="circle-day">{{day.day}}</div>
+                        <div [ngStyle]="day.day && day.hasEvents ?{'background-color':'purple'}:{'background-color':'#ffffff00'}" class="has-event"></div>
                     </div>
                 </div>
             </div>

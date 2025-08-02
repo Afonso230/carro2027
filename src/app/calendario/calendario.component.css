@@ -109,6 +109,8 @@ button{
     color: var(--text-color);
     border-radius: 5px;
     height: 75px;
+    display: flex;
+    flex-direction: column;
 }
 
 .day-selected{
@@ -128,8 +130,40 @@ button{
     margin: auto;
 }
 
+.has-event{
+    width: 7px;
+    height: 7px;
+    border-radius: 50px;
+    margin: auto;
+    background-color: purple;
+}
+
 @media screen and (max-width: 550px) , (max-width: 920px) and (orientation: landscape){
     .container{
         grid-template-columns: 1% 98% 1%;
+        width: 100vw;
+        height: calc(100vh - 80px);
+    }
+
+    .calendar-container{
+        box-sizing: border-box;
+        margin-top: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        width: calc(100% - 10px);
+    }
+
+    .current-month{
+        font-size: 20px;
+    }
+
+    .inner-calendar{
+        font-size: 15px;
+        width: 96%;
+    }
+
+    .day:hover{
+        background-color: var(--day-cell-color);
+        transition: 500ms;
     }
 }
