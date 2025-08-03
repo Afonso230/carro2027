@@ -35,4 +35,19 @@ export class CalendarioService {
   getEvents():Observable<Event[]>{
     return of(this.mockEvents)
   }
+
+  getEvent(id) :Observable<Event> {
+    var foundEvent = this.mockEvents.find((value:Event)=>{
+      return value.id === id
+    })
+    return of(foundEvent)
+  }
+
+  getEventsForDay(date:Date) :Observable<Event[]> {
+    var eventsForDay = this.mockEvents.filter((value:Event)=>{
+      var eventDate = new Date(value.data)
+      return eventDate.getDate() === date.getDate() && eventDate.getMonth() === date.getMonth() && eventDate.getFullYear() === date.getFullYear()
+    })
+    return of(eventsForDay)
+  }
 }

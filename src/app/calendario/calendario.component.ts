@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CalendarioService, Event } from '../calendario.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ShowDayDialogComponent } from '../show-day-dialog/show-day-dialog.component';
 
 @Component({
   selector: 'app-calendario',
@@ -22,7 +24,8 @@ month = new Date().getMonth()
   eventList : Event[] = []
 
   constructor(
-    private calendarService:CalendarioService
+    private calendarService:CalendarioService,
+    private matDialog: MatDialog
   ){}
 
   ngOnInit(){
@@ -84,9 +87,17 @@ month = new Date().getMonth()
               })
             })
           } else {
-            this.calendarDays.push({day:""})
+            this.calendarDays.push({day : ""})
           }
         }
+  }
+
+  openDay(day){
+    this.matDialog.open(ShowDayDialogComponent,{
+      data : {
+        dia : new Date(this.year,this.month,day)
+      }
+    })
   }
 }
 
