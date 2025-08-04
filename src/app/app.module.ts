@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router'; 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialogModule} from '@angular/material/dialog';
 import { ShowDayDialogComponent } from './show-day-dialog/show-day-dialog.component'
+import localePt from '@angular/common/locales/pt-PT'
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePt)
 
 export const routes: Routes = [
     {
@@ -65,7 +68,11 @@ export const routes: Routes = [
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-PT'
+    }
   ],
   bootstrap: [AppComponent]
 })
