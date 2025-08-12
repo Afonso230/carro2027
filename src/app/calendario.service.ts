@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { StorageService } from './storage.service';
+
 
 export interface Event{
   id: number;
@@ -54,10 +56,15 @@ export class CalendarioService {
     }
   ]
 
-  constructor() { }
+  constructor(
+    private storageService:StorageService
+  ) { }
 
   getEvents():Observable<Event[]>{
-    return of(this.mockEvents)
+    return this.storageService.getData("events").pipe(map(data=>{
+      console.log(data)
+      return data
+    }))
   }
 
   getEvent(id) :Observable<Event> {

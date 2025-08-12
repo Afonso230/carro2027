@@ -20,34 +20,10 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { firebaseConfig } from './environment/firebase.environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 registerLocaleData(localePt)
-
-export const routes: Routes = [
-    {
-        path:'',
-        component: HomeComponent
-    },
-    {
-        path:'quotas',
-        component: QuotasComponent
-    },
-    {
-        path:'calendario',
-        component: CalendarioComponent
-    },
-    {
-        path:'perfil',
-        component: PerfilComponent
-    },
-    {
-        path:'atas',
-        component: AtasComponent
-    },
-    {
-        path:'regras',
-        component: RegrasComponent
-    }
-];
 
 @NgModule({
   declarations: [
@@ -62,8 +38,11 @@ export const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
+    AngularFireDatabaseModule,
     
+    AngularFireModule.initializeApp(firebaseConfig),
+
     MatExpansionModule,
     MatIconModule,
     MatDialogModule
@@ -75,9 +54,9 @@ export const routes: Routes = [
       provide: LOCALE_ID,
       useValue: 'pt-PT'
     },
+
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase())
   ],
   bootstrap: [AppComponent]
 })
