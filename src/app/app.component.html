@@ -1,7 +1,7 @@
 <div class="navbar-background"></div>
-<nav class="navbar" [class.navbar-opened]="opened" (click)="triggerNavbar()">
+<nav class="navbar" [class.navbar-opened]="opened">
     <ul class="navbar-nav">
-        <li class="logo">
+        <li class="logo" (click)="triggerNavbar()">
             <a class="nav-link" [class.navlink-opened]="opened">
                 <span class=" link-text"><pre class="logo-text">Carro 27</pre></span>
                 <svg
