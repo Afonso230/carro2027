@@ -62,8 +62,10 @@ export class CalendarioService {
 
   getEvents():Observable<Event[]>{
     return this.storageService.getData("events").pipe(map(data=>{
-      console.log(data)
-      return data
+      return data.map((event)=>{
+        event.data = new Date(event.data)
+        return event
+      })
     }))
   }
 
@@ -75,11 +77,14 @@ export class CalendarioService {
   }
 
   getEventsForDay(date:Date) :Observable<Event[]> {
-    var eventsForDay = this.mockEvents.filter((value:Event)=>{
-      var eventDate = new Date(value.data)
-      return eventDate.getDate() === date.getDate() && eventDate.getMonth() === date.getMonth() && eventDate.getFullYear() === date.getFullYear()
-    })
-    return of(eventsForDay)
+    return this.getEvents().pipe(map(events=>{
+      var eventsForDay = events.filter((value:Event)=>{
+        var eventDate = new Date(value.data)
+        return eventDate.getDate() === date.getDate() && eventDate.getMonth() === date.getMonth() && eventDate.getFullYear() === date.getFullYear()
+      })
+      return eventsForDay
+    }))
+
   }
 
   getEventType(id): EventType{

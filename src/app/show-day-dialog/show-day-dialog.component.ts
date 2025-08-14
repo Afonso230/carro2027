@@ -14,7 +14,7 @@ export interface EventDialogData {
 export class ShowDayDialogComponent {
   
   events : Event[] 
-  
+
   constructor(
     public dialogRef : MatDialogRef<ShowDayDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data : EventDialogData,
@@ -25,5 +25,13 @@ export class ShowDayDialogComponent {
     this.calendarioService.getEventsForDay(this.data.dia).subscribe((value:Event[])=>{
       this.events = value
     })
+  }
+
+  fecharDialogo(): void {
+      this.dialogRef.close();
+  }
+
+  getColorForEvent(event:Event){
+    return this.calendarioService.getEventType(event.tipo).color
   }
 }

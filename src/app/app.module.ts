@@ -23,6 +23,7 @@ import { firebaseConfig } from './environment/firebase.environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import {MatButtonModule} from '@angular/material/button';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(localePt)
 
     MatExpansionModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [
     provideClientHydration(),

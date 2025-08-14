@@ -1,6 +1,27 @@
-<div class="day-dialog-container">
-    <h1>{{data.dia | date:'longDate'}}</h1>
-    <div class="day-events-container">
-        
+<mat-dialog-content>
+    <div class="header">
+        <h2 class="header-date">{{data.dia | date:'longDate'}}</h2>
+        <button mat-icon-button (click)="fecharDialogo()" style="align-self:end;">
+            <mat-icon fontIcon="close"></mat-icon>
+        </button>
     </div>
-</div>
+    <h3 *ngIf="events && events.length != 0"> Eventos :</h3>
+    <h4 *ngIf="!events || events.length == 0">Sem eventos planeados</h4>
+    <mat-accordion *ngFor="let event of events">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div class="has-event" [ngStyle]="{'background-color':getColorForEvent(event)}"></div> 
+                    {{event.titulo}}
+                </mat-panel-title>
+                <mat-panel-description class="mat-panel-description">
+                     <mat-icon>access_time</mat-icon>
+                     {{event.data | date:'shortTime'}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="event-container">
+                {{event.descricao}}
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</mat-dialog-content>
