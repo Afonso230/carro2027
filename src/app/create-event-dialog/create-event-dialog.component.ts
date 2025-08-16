@@ -8,9 +8,10 @@ export interface CreateEventDialogData {
 }
 
 @Component({
-  selector: 'app-create-event-dialog',
-  templateUrl: './create-event-dialog.component.html',
-  styleUrl: './create-event-dialog.component.css'
+    selector: 'app-create-event-dialog',
+    templateUrl: './create-event-dialog.component.html',
+    styleUrl: './create-event-dialog.component.css',
+    standalone: false
 })
 export class CreateEventDialogComponent {
   eventTypes: EventType[] = [];

@@ -5,9 +5,10 @@ interface RegrasContent {
 }
 
 @Component({
-  selector: 'app-regras',
-  templateUrl: './regras.component.html',
-  styleUrls: ['./regras.component.css']
+    selector: 'app-regras',
+    templateUrl: './regras.component.html',
+    styleUrls: ['./regras.component.css'],
+    standalone: false
 })
 export class RegrasComponent implements OnInit {
 

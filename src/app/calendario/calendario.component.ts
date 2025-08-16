@@ -6,9 +6,10 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { DialogService } from '../utils/dialog.service';
 
 @Component({
-  selector: 'app-calendario',
-  templateUrl: './calendario.component.html',
-  styleUrl: './calendario.component.css'
+    selector: 'app-calendario',
+    templateUrl: './calendario.component.html',
+    styleUrl: './calendario.component.css',
+    standalone: false
 })
 export class CalendarioComponent {
 month = new Date().getMonth()

@@ -10,9 +10,10 @@ export interface EventDialogData {
 }
 
 @Component({
-  selector: 'app-show-day-dialog',
-  templateUrl: './show-day-dialog.component.html',
-  styleUrl: './show-day-dialog.component.css'
+    selector: 'app-show-day-dialog',
+    templateUrl: './show-day-dialog.component.html',
+    styleUrl: './show-day-dialog.component.css',
+    standalone: false
 })
 export class ShowDayDialogComponent {
   
