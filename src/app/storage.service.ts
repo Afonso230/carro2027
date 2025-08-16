@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Database, listVal, objectVal, push, ref, remove, set } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,21 +7,25 @@ import { Observable } from 'rxjs';
 })
 export class StorageService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: Database) { }
 
   // Create or Update Data
   setData(path: string, data): Promise<void> {
-    return this.db.object(path).set(data);
+    return set(ref(this.db, path), data);
   }
 
   // Read Data as Observable
   getData(path: string): Observable<any> {
-    return this.db.object(path).valueChanges();
+    return objectVal(ref(this.db, path))
+  }
+
+  getList(path: string): Observable<any> {
+    return listVal(ref(this.db, path))
   }
 
   // Push Data to a List
   pushData(path: string, data: any): Promise<any> {
-    return this.db.list(path).push(data).then(() => {
+    return set(push(ref(this.db, path)), data).then(() => {
       console.log('Player added successfully.');
     }).catch(error => {
       console.error('Error during push operation:', error);
@@ -30,6 +34,6 @@ export class StorageService {
 
   // Delete Data
   deleteData(path: string): Promise<void> {
-    return this.db.object(path).remove();
+    return remove(ref(this.db, path));
   }
 }

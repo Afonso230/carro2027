@@ -61,7 +61,7 @@ export class CalendarioService {
   ) { }
 
   getEvents():Observable<Event[]>{
-    return this.storageService.getData("events").pipe(map(data=>{
+    return this.storageService.getList("events").pipe(map(data=>{
       return data.map((event)=>{
         event.data = new Date(event.data)
         return event

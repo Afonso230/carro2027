@@ -18,11 +18,7 @@ import localePt from '@angular/common/locales/pt-PT'
 import { registerLocaleData } from '@angular/common';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { firebaseConfig } from './environment/firebase.environment';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { MatButtonModule, MatFabButton, MatMiniFabButton } from '@angular/material/button';
 import { CreateEventDialogComponent } from './create-event-dialog/create-event-dialog.component';
 import {MatInputModule} from '@angular/material/input';
@@ -30,6 +26,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule,} from '@angular/material/datepicker';
 import {MatTimepickerModule} from '@angular/material/timepicker';
+import { getDatabase, provideDatabase } from '@angular/fire/database';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -47,9 +44,6 @@ registerLocaleData(localePt)
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireDatabaseModule,
-    
-    AngularFireModule.initializeApp(firebaseConfig),
 
     MatExpansionModule,
     MatIconModule,
@@ -69,8 +63,9 @@ registerLocaleData(localePt)
       useValue: 'pt-PT'
     },
 
-    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)), 
     provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase())
   ],
   bootstrap: [AppComponent]
 })
