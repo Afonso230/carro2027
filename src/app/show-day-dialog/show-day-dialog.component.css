@@ -41,8 +41,10 @@
     margin-top: 12px;
 }
 
-@media screen and (max-width: 550px) , (max-width: 920px) and (orientation: landscape) {
-    .mat-expansion-panel-header{
-        padding: 0 12px;
-    }
+.add-event-button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
+

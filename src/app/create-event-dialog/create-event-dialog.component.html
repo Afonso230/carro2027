@@ -1,0 +1,18 @@
+<mat-dialog-content>
+    <div class="header">
+        <h2 class="header-date">{{data.dia | date:'longDate'}}</h2>
+        <button mat-icon-button (click)="fecharDialogo()" style="align-self:end;">
+            <mat-icon fontIcon="close"></mat-icon>
+        </button>
+    </div>
+    <mat-form-field>
+        <mat-label>Tipo de evento</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let eventtype of eventTypes" value="{{eventtype.name}}">{{eventtype.name}}</mat-option>
+        </mat-select> 
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Título</mat-label>
+        <input matInput>
+    </mat-form-field>
+</mat-dialog-content>

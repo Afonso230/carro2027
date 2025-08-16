@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CalendarioService, Event } from '../calendario.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowDayDialogComponent } from '../show-day-dialog/show-day-dialog.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { DialogService } from '../utils/dialog.service';
 
 @Component({
   selector: 'app-calendario',
@@ -25,7 +27,8 @@ month = new Date().getMonth()
 
   constructor(
     private calendarService:CalendarioService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private dialogService : DialogService
   ){}
 
   ngOnInit(){
@@ -92,12 +95,13 @@ month = new Date().getMonth()
         }
   }
 
-  openDay(day){
-    this.matDialog.open(ShowDayDialogComponent,{
-      data : {
-        dia : new Date(this.year,this.month,day)
+  openDay(day: number) {
+    this.matDialog.open(ShowDayDialogComponent, {
+      ...this.dialogService.getGenericDialogConfig(),
+      data: {
+        dia: new Date(this.year, this.month, day)
       }
-    })
+    });
   }
 }
 

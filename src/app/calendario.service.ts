@@ -90,4 +90,8 @@ export class CalendarioService {
   getEventType(id): EventType{
     return this.eventTypes[id]
   }
+
+  getEventTypes(){
+    return this.eventTypes
+  }
 }

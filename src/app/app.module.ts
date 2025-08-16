@@ -10,9 +10,9 @@ import { AtasComponent } from './atas/atas.component';
 import { RegrasComponent } from './regras/regras.component';
 import { HomeComponent } from './home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatIconModule} from '@angular/material/icon';
-import { MatDialogModule} from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ShowDayDialogComponent } from './show-day-dialog/show-day-dialog.component'
 import localePt from '@angular/common/locales/pt-PT'
 import { registerLocaleData } from '@angular/common';
@@ -23,7 +23,13 @@ import { firebaseConfig } from './environment/firebase.environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule, MatFabButton, MatMiniFabButton } from '@angular/material/button';
+import { CreateEventDialogComponent } from './create-event-dialog/create-event-dialog.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule,} from '@angular/material/datepicker';
+import {MatTimepickerModule} from '@angular/material/timepicker';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -35,7 +41,8 @@ registerLocaleData(localePt)
     AtasComponent,
     RegrasComponent,
     HomeComponent,
-    ShowDayDialogComponent
+    ShowDayDialogComponent,
+    CreateEventDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,12 @@ registerLocaleData(localePt)
     MatExpansionModule,
     MatIconModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFabButton,
+    MatMiniFabButton,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
     provideClientHydration(),
