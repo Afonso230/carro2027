@@ -20,6 +20,12 @@
     justify-content: left;
 }
 
+.add-button{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
 @media screen and (max-width: 599px){
     .horario-picker{
         justify-content: space-between;
