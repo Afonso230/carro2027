@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ShowDayDialogComponent } from '../show-day-dialog/show-day-dialog.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { DialogService } from '../utils/dialog.service';
+import { CreateEventDialogComponent } from '../create-event-dialog/create-event-dialog.component';
 
 @Component({
     selector: 'app-calendario',
@@ -103,6 +104,12 @@ month = new Date().getMonth()
         dia: new Date(this.year, this.month, day)
       }
     });
+  }
+  
+  openEventCreator(){ //euuuuuuuuuu
+    this.matDialog.open(CreateEventDialogComponent,{
+      ...this.dialogService.getGenericDialogConfig(),
+    })
   }
 }
 

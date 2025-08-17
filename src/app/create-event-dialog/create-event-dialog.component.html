@@ -1,18 +1,41 @@
 <mat-dialog-content>
     <div class="header">
-        <h2 class="header-date">{{data.dia | date:'longDate'}}</h2>
+        <h2 class="header-date">Adicionar evento</h2>
         <button mat-icon-button (click)="fecharDialogo()" style="align-self:end;">
             <mat-icon fontIcon="close"></mat-icon>
         </button>
     </div>
-    <mat-form-field>
-        <mat-label>Tipo de evento</mat-label>
-        <mat-select>
-            <mat-option *ngFor="let eventtype of eventTypes" value="{{eventtype.name}}">{{eventtype.name}}</mat-option>
-        </mat-select> 
+    <div class="event-creator-container">
+        <mat-form-field>
+            <mat-label>Tipo de evento</mat-label>
+            <mat-select [(ngModel)]="tipo">
+                <mat-option *ngFor="let eventtype of eventTypes" value="{{eventtype['id']}}">{{eventtype.name}}</mat-option>
+            </mat-select> 
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Título</mat-label>
+            <input matInput [(ngModel)]="titulo">
+        </mat-form-field>
+        <div class="horario-picker">
+            <mat-form-field style="margin-right: 16px;">
+                <mat-label>Escolher data</mat-label>
+                <input matInput [matDatepicker]="datepicker" [(ngModel)]="eventTime">
+                <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Escolher horas</mat-label>
+                <input matInput [matTimepicker]="timepicker" [(ngModel)]="eventTime">
+                <mat-timepicker-toggle matIconSuffix [for]="timepicker"/>
+                <mat-timepicker #timepicker/>
+            </mat-form-field>
+        </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput [(ngModel)]="descricao"></textarea>
     </mat-form-field>
-    <mat-form-field>
-        <mat-label>Título</mat-label>
-        <input matInput>
-    </mat-form-field>
+  </div>
 </mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton (click)="addEvent()" cdkFocusInitial>Adicionar</button>
+</mat-dialog-actions>

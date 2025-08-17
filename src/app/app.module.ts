@@ -27,6 +27,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule,} from '@angular/material/datepicker';
 import {MatTimepickerModule} from '@angular/material/timepicker';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -53,11 +55,15 @@ registerLocaleData(localePt)
     MatMiniFabButton,
     MatInputModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatTimepickerModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
+    provideNativeDateAdapter(),
     {
       provide: LOCALE_ID,
       useValue: 'pt-PT'

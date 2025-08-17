@@ -39,23 +39,6 @@ export class CalendarioService {
       color:"#00ffff"
     }] 
 
-  mockEvents:Event[] = [
-    {
-      id:1,
-      data:Date.UTC(2025,7,2,17,0),
-      titulo:"evento mockado",
-      descricao:"descrição mockada do evento mockado",
-      tipo:0
-    },
-    {
-      id:2,
-      data:Date.UTC(2025,7,3,18,0),
-      titulo:"evento mockadissimo",
-      descricao:"descrição mockadissima do evento mockadissimo",
-      tipo:1
-    }
-  ]
-
   constructor(
     private storageService:StorageService
   ) { }
@@ -67,13 +50,6 @@ export class CalendarioService {
         return event
       })
     }))
-  }
-
-  getEvent(id) :Observable<Event> {
-    var foundEvent = this.mockEvents.find((value:Event)=>{
-      return value.id === id
-    })
-    return of(foundEvent)
   }
 
   getEventsForDay(date:Date) :Observable<Event[]> {
@@ -93,5 +69,9 @@ export class CalendarioService {
 
   getEventTypes(){
     return this.eventTypes
+  }
+
+  addEvent(event :Event){
+    return this.storageService.pushData("events", event)
   }
 }

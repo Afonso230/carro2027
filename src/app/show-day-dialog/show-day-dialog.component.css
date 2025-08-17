@@ -16,9 +16,8 @@
 
 .has-event{
     width: 7px;
-    height: 60%;
+    height: 30px;
     border-radius: 50px;
-    margin: auto;
     margin-right: 15px;
 }
 
@@ -41,10 +40,8 @@
     margin-top: 12px;
 }
 
-.add-event-button {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+.mat-expansion-panel-header-title{
+    flex-grow: 4;
 }
+
 
