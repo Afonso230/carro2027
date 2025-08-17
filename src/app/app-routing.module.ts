@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { QuotasComponent } from './quotas/quotas.component';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -10,7 +9,7 @@ import { RegrasComponent } from './regras/regras.component';
 const routes: Routes = [
     {
         path:'',
-        component: HomeComponent
+        redirectTo:'/quotas',pathMatch:'full'
     },
     {
         path:'quotas',

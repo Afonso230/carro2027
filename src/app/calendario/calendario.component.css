@@ -136,6 +136,13 @@ button{
     background-color: purple;
 }
 
+.add-event-button {
+  margin-right: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
 
 @media screen and (max-width: 599px) {
   .container{

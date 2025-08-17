@@ -41,12 +41,5 @@ export class ShowDayDialogComponent {
     return this.calendarioService.getEventType(event.tipo).color
   }
 
-  openEventCreator(){ //euuuuuuuuuu
-    this.matDialog.open(CreateEventDialogComponent,{
-      ...this.dialogService.getGenericDialogConfig(),
-      data : {
-        dia : this.data.dia
-      }
-    })
-  }
+  
 }

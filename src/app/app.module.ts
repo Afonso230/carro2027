@@ -8,7 +8,6 @@ import { QuotasComponent } from './quotas/quotas.component';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { AtasComponent } from './atas/atas.component';
 import { RegrasComponent } from './regras/regras.component';
-import { HomeComponent } from './home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,6 +26,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule,} from '@angular/material/datepicker';
 import {MatTimepickerModule} from '@angular/material/timepicker';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { LoginComponentComponent } from './login-component/login-component.component';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -37,14 +39,13 @@ registerLocaleData(localePt)
     CalendarioComponent,
     AtasComponent,
     RegrasComponent,
-    HomeComponent,
     ShowDayDialogComponent,
-    CreateEventDialogComponent
+    CreateEventDialogComponent,
+    LoginComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     MatExpansionModule,
     MatIconModule,
     MatDialogModule,
@@ -53,11 +54,15 @@ registerLocaleData(localePt)
     MatMiniFabButton,
     MatInputModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatTimepickerModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
+    provideNativeDateAdapter(),
     {
       provide: LOCALE_ID,
       useValue: 'pt-PT'
