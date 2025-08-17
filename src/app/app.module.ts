@@ -29,6 +29,7 @@ import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { LoginComponentComponent } from './login-component/login-component.component';
+import { AdminComponent } from './admin/admin.component';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -41,7 +42,8 @@ registerLocaleData(localePt)
     RegrasComponent,
     ShowDayDialogComponent,
     CreateEventDialogComponent,
-    LoginComponentComponent
+    LoginComponentComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

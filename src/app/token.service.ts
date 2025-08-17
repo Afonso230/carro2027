@@ -11,13 +11,13 @@ export class TokenService {
 
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', JSON.stringify(expiresAt.valueOf()));
-    localStorage.setItem('username', userInfo.username);
+    localStorage.setItem('userID', userInfo.userID);
     localStorage.setItem('fullname', userInfo.fullName);
     localStorage.setItem('authorities', userInfo.authorities[0]);
   }
 
-  getUserUsername(){
-    return localStorage.getItem('username');
+  getUserID(){
+    return localStorage.getItem('userID');
   }
 
   getUserFullName(){
@@ -45,7 +45,7 @@ export class TokenService {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
-    localStorage.removeItem('username');
+    localStorage.removeItem('userID');
     localStorage.removeItem('fullname');
   }
   constructor() { }

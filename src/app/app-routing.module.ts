@@ -5,6 +5,7 @@ import { CalendarioComponent } from './calendario/calendario.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AtasComponent } from './atas/atas.component';
 import { RegrasComponent } from './regras/regras.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
     {
@@ -30,6 +31,10 @@ const routes: Routes = [
     {
         path:'regras',
         component: RegrasComponent
+    },
+    {
+        path:'admin',
+        component: AdminComponent
     }
 ];
 
