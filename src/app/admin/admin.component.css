@@ -1,0 +1,36 @@
+.tabs-container{
+    max-width:1200px;
+    height: fit-content;
+    background-color: var(--bg-color);
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-column: 2;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.select-month{
+    margin-top: 20PX;
+}
+
+:host ::ng-deep .mat-mdc-tab-body-content{
+    overflow: hidden;
+}
+
+.add-button{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+@media screen and (max-width: 599px){
+    .tabs-container{
+        box-sizing: border-box;
+        margin-top: 20px;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: calc(100% - 30px);
+    }
+}

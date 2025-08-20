@@ -54,6 +54,8 @@ export class CreateEventDialogComponent {
       tipo : this.tipo,
       titulo : this.titulo
     }
-    this.calendarioService.addEvent(eventToAdd)
+    this.calendarioService.addEvent(eventToAdd).then((value)=>{
+      this.dialogRef.close()
+    })
   }
 }

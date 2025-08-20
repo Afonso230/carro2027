@@ -28,8 +28,11 @@ import {MatTimepickerModule} from '@angular/material/timepicker';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { LoginComponentComponent } from './login-component/login-component.component';
 import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatTabsModule} from '@angular/material/tabs';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -42,8 +45,8 @@ registerLocaleData(localePt)
     RegrasComponent,
     ShowDayDialogComponent,
     CreateEventDialogComponent,
-    LoginComponentComponent,
-    AdminComponent
+    AdminComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,10 @@ registerLocaleData(localePt)
     MatSelectModule,
     MatDatepickerModule,
     MatTimepickerModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatTabsModule
   ],
   providers: [
     provideClientHydration(),

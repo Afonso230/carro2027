@@ -1,1 +1,23 @@
-<p>admin works!</p>
+<div class="tabs-container">
+    <mat-tab-group>
+        <mat-tab label="Dashboard"> Content 1 </mat-tab>
+        <mat-tab label="Quotas"> 
+            <div class="select-month">
+                <mat-form-field>
+                    <mat-label>Seleciona um mês</mat-label>
+                    <mat-select [(ngModel)]="selectedMonth" name="month">
+                        <mat-option *ngFor="let mes of meses" [value]="mes.id">
+                        {{mes.mes}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <mat-dialog-actions>
+                <div class="add-button">
+                    <button mat-raised-button color="primary">Adicionar Quota</button>
+                </div>
+            </mat-dialog-actions>    
+        </mat-tab>
+        <mat-tab label="Eventos"> Content 3 </mat-tab>
+    </mat-tab-group>
+</div>

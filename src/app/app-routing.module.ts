@@ -6,6 +6,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AtasComponent } from './atas/atas.component';
 import { RegrasComponent } from './regras/regras.component';
 import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
     {
@@ -35,6 +36,10 @@ const routes: Routes = [
     {
         path:'admin',
         component: AdminComponent
+    },
+    {
+        path:'login',
+        component: LoginComponent
     }
 ];
 
