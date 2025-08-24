@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+
+export interface MonthQuotas {
+  valor : number;
+  pagamentos : any;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +16,7 @@ export class QuotasService {
     private storageService:StorageService
   ) { }
 
-  getQuotasForMonth(month){
+  getQuotasForMonth(month) : Observable<MonthQuotas> {
     return this.storageService.getData(`quotas/${month}`)
   }
   getUnpaidQuotasForUser(user){

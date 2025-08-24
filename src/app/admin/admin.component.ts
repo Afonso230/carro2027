@@ -1,5 +1,15 @@
 import { Component } from '@angular/core';
 import { User, UserService } from '../user.service';
+import { MonthQuotas, QuotasService } from '../quotas.service';
+
+interface UserMonthQuota {
+  id : string;
+  type : string;
+  name : string;
+  paymentStatus : boolean;
+  paymentDate : Date;
+  fine : number;
+}
 
 @Component({
   selector: 'app-admin',
@@ -10,12 +20,15 @@ import { User, UserService } from '../user.service';
 export class AdminComponent {
 
   meses: any[] = [];
-  selectedMonth: any;
+  selectedMonth: {id: string, mes:string} = {id: "set2025", mes: "Setembro 2025"};
   monthCodes = ["set2025","out2025","nov2025","dez2025","jan2026","feb2026","mar2026","abr2026","mai2026","jun2026","jul2026"]
-  users: User[]
+  users: User[];
+
+  usersPayments: UserMonthQuota[];
 
   constructor(
-    private userService : UserService
+    private userService : UserService,
+    private quotasService : QuotasService
   ){}
 
   ngOnInit() {
@@ -45,12 +58,52 @@ export class AdminComponent {
         mes: stringMesApresentada
       });
     }
-    console.log(this.meses);
   }
   getAllUsers(){
     this.userService.getAllUsers().subscribe((result)=>{
       this.users=result
+      this.getAllUsersQuotas();
     })
+  }
+
+  hasUserPayedQuota(quotas, userId){
+    for(var userIdQuotas in quotas.pagamentos){
+      if(userIdQuotas === userId){
+        return quotas.pagamentos[userIdQuotas].data;
+      }
+    }
+    return null;
+  }
+
+  getAllUsersQuotas() {
+    this.quotasService.getQuotasForMonth(this.selectedMonth.id).subscribe((quotas) => {
+      var usersMonthQuotas : UserMonthQuota[] = [];
+      for(var user of this.users){
+        var quotaOfUser = this.hasUserPayedQuota(quotas, user.id);
+        var userToAdd = {
+          id : user.id,
+          type : user.type + '', // TODO: trocar por função (no user service) que obtem o tipo de utilizador pelo numero
+          name : user.name,
+          paymentStatus : quotaOfUser ? true : false,
+          paymentDate : new Date(quotaOfUser),
+          fine : 0
+        }
+        usersMonthQuotas.push(userToAdd);
+      }
+      this.usersPayments = usersMonthQuotas;
+    })
+  }
+
+  seeAccount(elem) {
+
+  }
+
+  addPayment(elem){
+
+  }
+
+  deletePayment(elem){
+
   }
 }
 

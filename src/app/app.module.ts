@@ -33,6 +33,8 @@ import { LoginComponent } from './login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import {MatMenuModule} from '@angular/material/menu';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -65,7 +67,9 @@ registerLocaleData(localePt)
     FormsModule,
     MatCardModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule,
+    MatMenuModule
   ],
   providers: [
     provideClientHydration(),
