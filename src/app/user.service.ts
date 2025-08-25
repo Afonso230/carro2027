@@ -9,11 +9,39 @@ export interface User {
   id: string 
 }
 
+export interface UserType {
+  type : number,
+  tipo : string
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  usersType : UserType[] = [
+    {
+      type : 0,
+      tipo : 'Comissão'
+    },
+    {
+      type : 1,
+      tipo : 'Convívios'
+    },
+    {
+      type : 2,
+      tipo : 'Comunicação e Imagem'
+    },
+    {
+      type : 3,
+      tipo : 'Jantares de Curso'
+    },
+    {
+      type : 4,
+      tipo : 'Brindes'
+    },
+  ]
+  
   constructor(
     private storageService:StorageService
   ) { }
@@ -29,5 +57,10 @@ export class UserService {
       console.log(userList)
       return userList
     }))
+  }
+
+  getUserTypeByNumber(type : number){
+    console.log(this.usersType)
+    return this.usersType[type]
   }
 }

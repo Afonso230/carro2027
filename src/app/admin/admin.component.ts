@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { SeeAccountDialogComponent } from '../see-account-dialog/see-account-dialog.component';
 import { log } from 'console';
 import { UserMetadata } from '@angular/fire/auth';
+import { DialogService } from '../utils/dialog.service';
+import { StorageService } from '../storage.service';
 
 export interface UserMonthQuota {
   id : string;
@@ -34,6 +36,7 @@ export class AdminComponent {
     private userService : UserService,
     private quotasService : QuotasService,
     private matDialog: MatDialog,
+    private dialogService : DialogService
   ){}
 
   ngOnInit() {
@@ -87,7 +90,7 @@ export class AdminComponent {
         var quotaOfUser = this.hasUserPayedQuota(quotas, user.id);
         var userToAdd = {
           id : user.id,
-          type : user.type + '', // TODO: trocar por função (no user service) que obtem o tipo de utilizador pelo numero
+          type : this.userService.getUserTypeByNumber(user.type).tipo, 
           name : user.name,
           paymentStatus : quotaOfUser ? true : false,
           paymentDate : new Date(quotaOfUser),
@@ -101,17 +104,24 @@ export class AdminComponent {
 
   seeAccount(elem:UserMonthQuota) {
     this.matDialog.open(SeeAccountDialogComponent,{
+      ...this.dialogService.getGenericDialogConfig(),
       data: {
-        userData : elem
+        id : elem.id,
+        name : elem.name,
+        type : elem.type
       }
     });
   }
 
   addPayment(elem){
-
+    
   }
 
   deletePayment(elem){
+
+  }
+
+  applyFilter(event){
 
   }
 }

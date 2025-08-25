@@ -36,6 +36,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import { SeeAccountDialogComponent } from './see-account-dialog/see-account-dialog.component';
+import { AddPaymentDialogComponent } from './add-payment-dialog/add-payment-dialog.component';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -50,7 +51,8 @@ registerLocaleData(localePt)
     CreateEventDialogComponent,
     AdminComponent,
     LoginComponent,
-    SeeAccountDialogComponent
+    SeeAccountDialogComponent,
+    AddPaymentDialogComponent
   ],
   imports: [
     BrowserModule,

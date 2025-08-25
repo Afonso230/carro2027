@@ -1,3 +1,10 @@
 <mat-dialog-content>
-    <h1>{{data.name}}</h1>
+    <div class="header">
+        <h1>{{data.name}}</h1>
+        <button mat-icon-button (click)="fecharDialogo()" style="align-self:end;">
+            <mat-icon fontIcon="close"></mat-icon>
+        </button>
+    </div>
+    <h2>{{data.type}}</h2>
+    <h3>histórico de quotas </h3>
 </mat-dialog-content>

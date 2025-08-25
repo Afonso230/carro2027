@@ -1,10 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AdminComponent, UserMonthQuota } from '../admin/admin.component';
 
 
-export interface EventDialogData {
-  userData : UserMonthQuota;
+export interface UserData {
+  id : string,
+  name : string,
+  type : number
 }
 
 @Component({
@@ -18,6 +19,13 @@ export class SeeAccountDialogComponent {
 
  constructor(
   public dialogRef : MatDialogRef<SeeAccountDialogComponent>,
-  @Inject(MAT_DIALOG_DATA) public data : UserMonthQuota,
- ){}
+  @Inject(MAT_DIALOG_DATA) public data : UserData,
+  
+ ){
+  console.log(data.name)
+ }
+
+ fecharDialogo(): void {
+    this.dialogRef.close();
+  }
 }
