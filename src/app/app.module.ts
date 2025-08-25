@@ -35,6 +35,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
+import { SeeAccountDialogComponent } from './see-account-dialog/see-account-dialog.component';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -48,7 +49,8 @@ registerLocaleData(localePt)
     ShowDayDialogComponent,
     CreateEventDialogComponent,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    SeeAccountDialogComponent
   ],
   imports: [
     BrowserModule,

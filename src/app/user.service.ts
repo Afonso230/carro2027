@@ -26,6 +26,7 @@ export class UserService {
         tempUser["id"] = id
         userList.push(tempUser)
       }
+      console.log(userList)
       return userList
     }))
   }

@@ -106,7 +106,7 @@ month = new Date().getMonth()
     });
   }
   
-  openEventCreator(){ //euuuuuuuuuu
+  openEventCreator(){ 
     this.matDialog.open(CreateEventDialogComponent,{
       ...this.dialogService.getGenericDialogConfig(),
     })

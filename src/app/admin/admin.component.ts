@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { User, UserService } from '../user.service';
 import { MonthQuotas, QuotasService } from '../quotas.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SeeAccountDialogComponent } from '../see-account-dialog/see-account-dialog.component';
+import { log } from 'console';
+import { UserMetadata } from '@angular/fire/auth';
 
-interface UserMonthQuota {
+export interface UserMonthQuota {
   id : string;
   type : string;
   name : string;
@@ -28,7 +32,8 @@ export class AdminComponent {
 
   constructor(
     private userService : UserService,
-    private quotasService : QuotasService
+    private quotasService : QuotasService,
+    private matDialog: MatDialog,
   ){}
 
   ngOnInit() {
@@ -94,8 +99,12 @@ export class AdminComponent {
     })
   }
 
-  seeAccount(elem) {
-
+  seeAccount(elem:UserMonthQuota) {
+    this.matDialog.open(SeeAccountDialogComponent,{
+      data: {
+        userData : elem
+      }
+    });
   }
 
   addPayment(elem){

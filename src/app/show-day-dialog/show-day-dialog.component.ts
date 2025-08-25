@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateEventDialogComponent } from '../create-event-dialog/create-event-dialog.component'; //euuuuuuuuuu
 import { DialogService } from '../utils/dialog.service';
 
+
 export interface EventDialogData {
   dia : Date;
 }
@@ -23,7 +24,7 @@ export class ShowDayDialogComponent {
     public dialogRef : MatDialogRef<ShowDayDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data : EventDialogData,
     private calendarioService : CalendarioService,
-    private matDialog: MatDialog, //euuuuuuuuuu
+    private matDialog: MatDialog,
     private dialogService: DialogService
   ){}
 
