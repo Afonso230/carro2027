@@ -7,6 +7,7 @@ import { log } from 'console';
 import { UserMetadata } from '@angular/fire/auth';
 import { DialogService } from '../utils/dialog.service';
 import { StorageService } from '../storage.service';
+import { AddPaymentDialogComponent } from '../add-payment-dialog/add-payment-dialog.component';
 
 export interface UserMonthQuota {
   id : string;
@@ -15,6 +16,11 @@ export interface UserMonthQuota {
   paymentStatus : boolean;
   paymentDate : Date;
   fine : number;
+}
+
+export interface MonthData{
+  id: string;
+  mes:string;
 }
 
 @Component({
@@ -26,11 +32,17 @@ export interface UserMonthQuota {
 export class AdminComponent {
 
   meses: any[] = [];
-  selectedMonth: {id: string, mes:string} = {id: "set2025", mes: "Setembro 2025"};
+  selectedMonth: MonthData = {
+    id: "set2025", 
+    mes: "Setembro 2025"
+  };
+
   monthCodes = ["set2025","out2025","nov2025","dez2025","jan2026","feb2026","mar2026","abr2026","mai2026","jun2026","jul2026"]
   users: User[];
 
   usersPayments: UserMonthQuota[];
+
+  valor: number;
 
   constructor(
     private userService : UserService,
@@ -99,6 +111,7 @@ export class AdminComponent {
         usersMonthQuotas.push(userToAdd);
       }
       this.usersPayments = usersMonthQuotas;
+      this.valor = quotas.valor
     })
   }
 
@@ -108,13 +121,21 @@ export class AdminComponent {
       data: {
         id : elem.id,
         name : elem.name,
-        type : elem.type
+        type : elem.type,
       }
     });
   }
 
-  addPayment(elem){
-    
+  addPayment(elem:UserMonthQuota){
+    this.matDialog.open(AddPaymentDialogComponent,{
+      ...this.dialogService.getGenericDialogConfig(),
+      data: {
+        id : elem.id,
+        name : elem.name,
+        month : this.selectedMonth,
+        valor :  this.valor
+      }
+    })
   }
 
   deletePayment(elem){

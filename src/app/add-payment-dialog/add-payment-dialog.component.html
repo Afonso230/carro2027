@@ -1,1 +1,11 @@
-<p>add-payment-dialog works!</p>
+<mat-dialog-content>
+    <h3>Pagamento de {{data.month.mes}}</h3>
+    <h4>Utilizador: {{data.name}}</h4>
+    <mat-form-field>
+        <mat-label>Data de pagamento</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="paymentDate" [max]="today" (change)="dateChanged()">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <h4>Valor do pagamento: {{totalValue}}</h4>
+</mat-dialog-content>
