@@ -26,13 +26,25 @@ export class QuotasService {
     return this.storageService.getData(`quotas`).pipe(map(result=>{
       console.log(result)
       return result
-    }))
+    })) 
+  }
+
+  setQuotaPayment(month : string, userId : string, paymentDate : number){
+    return this.storageService.setData(`quotas/${month}/pagamentos/${userId}`,{
+      data : paymentDate
+    })
+  }
+
+  deleteQuotaPayment(month : string, userId : string){
+    return this.storageService.deleteData(`quotas/${month}/pagamentos/${userId}`)
   }
 
   convertThreeCharacterMonthIntoIndex(month){
     return this.months.indexOf(month)
   }
+
   calculateFineForDate(date:Date,month:string){
+    console.log(date)
     var monthIndex = this.convertThreeCharacterMonthIntoIndex(month.substring(0,3))
     var year = parseInt(month.substring(3))
     if( date.getFullYear() < year || (date.getFullYear() == year && date.getMonth() <= monthIndex)){

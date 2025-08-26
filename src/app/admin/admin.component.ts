@@ -32,10 +32,8 @@ export interface MonthData{
 export class AdminComponent {
 
   meses: any[] = [];
-  selectedMonth: MonthData = {
-    id: "set2025", 
-    mes: "Setembro 2025"
-  };
+  selectedMonth = "set2025"
+
 
   monthCodes = ["set2025","out2025","nov2025","dez2025","jan2026","feb2026","mar2026","abr2026","mai2026","jun2026","jul2026"]
   users: User[];
@@ -77,8 +75,19 @@ export class AdminComponent {
         id: this.monthCodes[numeroValue],
         mes: stringMesApresentada
       });
+      numeroValue++
     }
   }
+  
+  getMonthForId(monthId){
+    for (var month of this.meses){
+      if (month.id === monthId){
+        return month
+      }
+    }
+    return null
+  }
+
   getAllUsers(){
     this.userService.getAllUsers().subscribe((result)=>{
       this.users=result
@@ -96,23 +105,29 @@ export class AdminComponent {
   }
 
   getAllUsersQuotas() {
-    this.quotasService.getQuotasForMonth(this.selectedMonth.id).subscribe((quotas) => {
+    console.log(this.selectedMonth)
+    this.quotasService.getQuotasForMonth(this.selectedMonth).subscribe((quotas) => {
       var usersMonthQuotas : UserMonthQuota[] = [];
       for(var user of this.users){
         var quotaOfUser = this.hasUserPayedQuota(quotas, user.id);
+        var quotaPaymentDay = quotaOfUser ? new Date(quotaOfUser) : null
         var userToAdd = {
           id : user.id,
           type : this.userService.getUserTypeByNumber(user.type).tipo, 
           name : user.name,
           paymentStatus : quotaOfUser ? true : false,
-          paymentDate : new Date(quotaOfUser),
-          fine : 0
+          paymentDate : quotaPaymentDay,
+          fine : quotaPaymentDay ? this.quotasService.calculateFineForDate(quotaPaymentDay,this.selectedMonth) : null
         }
         usersMonthQuotas.push(userToAdd);
       }
       this.usersPayments = usersMonthQuotas;
       this.valor = quotas.valor
     })
+  }
+
+  monthChanged(){
+    this.getAllUsers()
   }
 
   seeAccount(elem:UserMonthQuota) {
@@ -132,14 +147,17 @@ export class AdminComponent {
       data: {
         id : elem.id,
         name : elem.name,
-        month : this.selectedMonth,
+        month : this.getMonthForId(this.selectedMonth),
         valor :  this.valor
       }
     })
   }
 
-  deletePayment(elem){
-
+  deletePayment(elem:UserMonthQuota){
+    var userConfirm = confirm("Queres apagar o pagamento do utilizador " + elem.name)
+    if (userConfirm){
+      this.quotasService.deleteQuotaPayment(this.selectedMonth,elem.id)
+    }
   }
 
   applyFilter(event){

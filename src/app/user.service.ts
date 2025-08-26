@@ -54,13 +54,11 @@ export class UserService {
         tempUser["id"] = id
         userList.push(tempUser)
       }
-      console.log(userList)
       return userList
     }))
   }
 
   getUserTypeByNumber(type : number){
-    console.log(this.usersType)
     return this.usersType[type]
   }
 }

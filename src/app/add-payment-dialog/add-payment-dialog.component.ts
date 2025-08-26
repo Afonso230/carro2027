@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MonthData } from '../admin/admin.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { QuotasService } from '../quotas.service';
+import { AgChartOptions } from 'ag-charts-community';
 
 export interface AddPaymentData {
   id : string,
@@ -21,6 +22,7 @@ export class AddPaymentDialogComponent {
   paymentDate : Date;
   today = new Date();
   totalValue :number;
+  chartOptions : AgChartOptions
 
   constructor(
     public dialogRef : MatDialogRef<AddPaymentDialogComponent>,
@@ -31,14 +33,45 @@ export class AddPaymentDialogComponent {
   ngOnInit(){
     this.paymentDate = new Date();
     this.updateTotalValue()
+    this.updateChart()
   }
 
   updateTotalValue(){
     this.totalValue = this.data.valor + this.quotasService.calculateFineForDate(this.paymentDate, this.data.month.id)
   }
 
+  updateChart(){
+    this.chartOptions = {
+      data: [
+        {amount : this.data.valor, source : "valor base"},
+        {amount : this.totalValue - this.data.valor, source : "multa"}
+      ],
+      series :[
+        {
+          type : "pie",
+          angleKey : "amount",
+          calloutLabelKey : "source",
+          sectorLabelKey : "amount",
+          sectorLabel : {
+            color : "white",
+            fontWeight : "bold"
+          }
+        }
+      ]
+    }
+  }
+
   dateChanged(){
     this.updateTotalValue()
+    this.updateChart()
   }
+
+  addPayment(){
+    console.log("aqui")
+    this.quotasService.setQuotaPayment(this.data.month.id,this.data.id,this.paymentDate.getTime()).then(()=>{
+      this.dialogRef.close()
+    })
+  }
+
 }
 

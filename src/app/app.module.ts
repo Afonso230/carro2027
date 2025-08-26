@@ -37,6 +37,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import { SeeAccountDialogComponent } from './see-account-dialog/see-account-dialog.component';
 import { AddPaymentDialogComponent } from './add-payment-dialog/add-payment-dialog.component';
+import { AgCharts, AgChartsModule } from 'ag-charts-angular';
+
+
 registerLocaleData(localePt)
 
 @NgModule({
@@ -73,7 +76,9 @@ registerLocaleData(localePt)
     MatCheckboxModule,
     MatTabsModule,
     MatTableModule,
-    MatMenuModule
+    MatMenuModule,
+    AgChartsModule,
+    AgCharts,
   ],
   providers: [
     provideClientHydration(),
