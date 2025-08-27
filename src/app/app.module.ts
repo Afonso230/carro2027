@@ -20,11 +20,11 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { firebaseConfig } from './environment/firebase.environment';
 import { MatButtonModule, MatFabButton, MatMiniFabButton } from '@angular/material/button';
 import { CreateEventDialogComponent } from './create-event-dialog/create-event-dialog.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
-import {MatDatepickerModule,} from '@angular/material/datepicker';
-import {MatTimepickerModule} from '@angular/material/timepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatTimepickerModule } from '@angular/material/timepicker';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
@@ -32,13 +32,13 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatTableModule} from '@angular/material/table';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 import { SeeAccountDialogComponent } from './see-account-dialog/see-account-dialog.component';
 import { AddPaymentDialogComponent } from './add-payment-dialog/add-payment-dialog.component';
 import { AgCharts, AgChartsModule } from 'ag-charts-angular';
-
+import { MatSortModule } from '@angular/material/sort'
 
 registerLocaleData(localePt)
 
@@ -79,6 +79,7 @@ registerLocaleData(localePt)
     MatMenuModule,
     AgChartsModule,
     AgCharts,
+    MatSortModule
   ],
   providers: [
     provideClientHydration(),

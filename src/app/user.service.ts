@@ -10,7 +10,6 @@ export interface User {
 }
 
 export interface UserType {
-  type : number,
   tipo : string
 }
 
@@ -21,25 +20,20 @@ export class UserService {
 
   usersType : UserType[] = [
     {
-      type : 0,
       tipo : 'Comissão'
     },
     {
-      type : 1,
-      tipo : 'Convívios'
-    },
-    {
-      type : 2,
       tipo : 'Comunicação e Imagem'
     },
     {
-      type : 3,
-      tipo : 'Jantares de Curso'
+      tipo : 'Convívios'
     },
     {
-      type : 4,
       tipo : 'Brindes'
     },
+    {
+      tipo : 'Jantares de Curso'
+    }
   ]
   
   constructor(
@@ -60,5 +54,14 @@ export class UserService {
 
   getUserTypeByNumber(type : number){
     return this.usersType[type]
+  }
+
+  getNumberByUserType(userType : string){
+    for(var i = 0 ; i < this.usersType.length ; i++){
+      if(this.usersType[i].tipo === userType) {
+        return i
+      }
+    }
+    return -1
   }
 }

@@ -8,6 +8,8 @@ import { UserMetadata } from '@angular/fire/auth';
 import { DialogService } from '../utils/dialog.service';
 import { StorageService } from '../storage.service';
 import { AddPaymentDialogComponent } from '../add-payment-dialog/add-payment-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 export interface UserMonthQuota {
   id : string;
@@ -42,14 +44,26 @@ export class AdminComponent {
 
   valor: number;
 
+  dataSource ;
+
+  displayedColumns = ['type','name','paymentStatus','paymentDate','fine','opt']
+
   constructor(
     private userService : UserService,
     private quotasService : QuotasService,
     private matDialog: MatDialog,
-    private dialogService : DialogService
+    private dialogService : DialogService,
+    private breakPointObserver : BreakpointObserver
   ){}
 
   ngOnInit() {
+    this.breakPointObserver.observe([Breakpoints.Small,Breakpoints.Handset]).subscribe((result)=>{
+      if (result.matches){
+        this.displayedColumns = ['name','paymentStatus','fine','opt']
+      } else {
+        this.displayedColumns = ['type','name','paymentStatus','paymentDate','fine','opt']
+      }
+    })
     this.gerarMeses();
     this.getAllUsers()
   }
@@ -105,7 +119,6 @@ export class AdminComponent {
   }
 
   getAllUsersQuotas() {
-    console.log(this.selectedMonth)
     this.quotasService.getQuotasForMonth(this.selectedMonth).subscribe((quotas) => {
       var usersMonthQuotas : UserMonthQuota[] = [];
       for(var user of this.users){
@@ -121,7 +134,23 @@ export class AdminComponent {
         }
         usersMonthQuotas.push(userToAdd);
       }
+      usersMonthQuotas.sort((quota1,quota2)=>{
+        return quota1.name.localeCompare(quota2.name)
+      })
+      usersMonthQuotas.sort((quota1,quota2)=>{
+        if  (quota1.paymentStatus && !quota2.paymentStatus){
+          return 1
+        } else if (!quota1.paymentStatus && quota2.paymentStatus){
+          return -1
+        } else {
+          return 0
+        }
+      })
+      usersMonthQuotas.sort((quota1,quota2)=>{
+        return this.userService.getNumberByUserType(quota1.type) - this.userService.getNumberByUserType(quota2.type)
+      })
       this.usersPayments = usersMonthQuotas;
+      this.dataSource = new MatTableDataSource(this.usersPayments);
       this.valor = quotas.valor
     })
   }
@@ -160,8 +189,9 @@ export class AdminComponent {
     }
   }
 
-  applyFilter(event){
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
 

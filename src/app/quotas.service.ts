@@ -24,7 +24,6 @@ export class QuotasService {
 
   getUnpaidQuotasForUser(user){
     return this.storageService.getData(`quotas`).pipe(map(result=>{
-      console.log(result)
       return result
     })) 
   }
@@ -44,7 +43,6 @@ export class QuotasService {
   }
 
   calculateFineForDate(date:Date,month:string){
-    console.log(date)
     var monthIndex = this.convertThreeCharacterMonthIntoIndex(month.substring(0,3))
     var year = parseInt(month.substring(3))
     if( date.getFullYear() < year || (date.getFullYear() == year && date.getMonth() <= monthIndex)){

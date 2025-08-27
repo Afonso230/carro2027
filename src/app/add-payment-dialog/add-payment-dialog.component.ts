@@ -67,7 +67,6 @@ export class AddPaymentDialogComponent {
   }
 
   addPayment(){
-    console.log("aqui")
     this.quotasService.setQuotaPayment(this.data.month.id,this.data.id,this.paymentDate.getTime()).then(()=>{
       this.dialogRef.close()
     })

@@ -38,3 +38,13 @@ td , th{
         width: calc(100% - 30px);
     }
 }
+
+@media screen and (min-width: 600px) and (max-width: 1400px){
+    .tabs-container{
+        box-sizing: border-box;
+        margin-top: 20px;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: calc(100% - 30px);
+    }
+}
