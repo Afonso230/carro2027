@@ -29,6 +29,11 @@ td , th{
     text-align: center;
 }
 
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
 @media screen and (max-width: 599px){
     .tabs-container{
         box-sizing: border-box;
