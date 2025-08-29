@@ -3,7 +3,7 @@
     <h4>Utilizador: {{data.name}}</h4>
     <mat-form-field>
         <mat-label>Data de pagamento</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="paymentDate" (dateChange)="dateChanged()" [max]="today">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="paymentDate" (dateChange)="dateChanged()" >
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

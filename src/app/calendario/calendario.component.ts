@@ -38,7 +38,6 @@ month = new Date().getMonth()
         this.eventList=events 
         this.updateMonth()
         this.buildCalendar()
-        console.log(this.eventList)
       })
   }
 

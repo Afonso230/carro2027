@@ -13,10 +13,10 @@
                 </mat-form-field>
             </div>
             <mat-form-field>
-                <mat-label>Filtro</mat-label>
+                <mat-label>Procurar</mat-label>
                 <input matInput (change)="applyFilter($event)" placeholder="Nome" #input>
             </mat-form-field>
-            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 tabela">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
                 <ng-container matColumnDef="type">
                     <th mat-header-cell *matHeaderCellDef >Tipo de utilizador</th>

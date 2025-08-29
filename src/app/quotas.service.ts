@@ -33,7 +33,6 @@ export class QuotasService {
 
   getUnpaidQuotasForUser(user){
     return this.storageService.getData(`quotas`).pipe(map(quotas=>{
-      console.log(quotas);
       var calculatedQuotas = [];
       for(var month in quotas){
         var monthPayments = quotas[month]["pagamentos"];
