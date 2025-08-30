@@ -52,6 +52,10 @@ export class UserService {
     }))
   }
 
+  getUserInfo(userId):Observable<User>{
+    return this.storageService.getData(`users/${userId}`);
+  }
+
   getUserTypeByNumber(type : number){
     return this.usersType[type]
   }
