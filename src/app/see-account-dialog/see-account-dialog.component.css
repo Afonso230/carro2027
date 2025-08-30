@@ -17,3 +17,8 @@
     padding: 10px;
     overflow: hidden;
 }
+
+.no-quotas-message{
+  text-align: center;
+  margin-top: 20px;
+}

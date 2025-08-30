@@ -1,24 +1,14 @@
 :root {
     font-size: 16px;
     font-family: 'Open Sans';
+    --containers-bg : #fff;
     --text-primary: #b6b6b6;
     --text-secondary: #ececec;
-    --bg-primary: #23232e;
-    --bg-secondary: #141418;
+    --nav-bar-primary: #23232e;
+    --nav-bar-hover: #141418;
     --transition-speed: 600ms;
-    /* events section*/
-    --bg-primary-color: #ececec;
-    --bg-secondary-color: black;
-    --bg-color: var(--bg-primary-color);
-    --text-primary-color: black;
-    --text-secondary-color: #ececec;
-    --text-color: var(--text-primary-color);
-    --day-cell-primary-color:#cdcccc;
-    --day-cell-secondary-color:#201f1f;
-    --day-cell-color: var(--day-cell-primary-color);
-    --circle-day-primary-color:#38B6FF;
-    --circle-day-secondary-color:#104363;
-    --circle-day-color:var(--circle-day-primary-color);
+    --day-cell-color: #cdcccc;
+    --calendar-blue:#38B6FF;
     --font-family: "Poppins", sans-serif;
 }
 

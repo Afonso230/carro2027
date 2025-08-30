@@ -11,7 +11,7 @@
     left: 0;
     width: 80px;
     height: 100%;
-    background-color: var(--bg-primary);
+    background-color: var(--nav-bar-primary);
     transition: width 200ms ease;
     overflow: hidden;
     z-index: 4;
@@ -56,7 +56,7 @@
 
 .navlink-opened{
     filter: grayscale(0%) opacity(1);
-    background-color: var(--bg-secondary);
+    background-color: var(--nav-bar-hover);
     color: var(--text-secondary);
 }
 
@@ -84,7 +84,7 @@
 
 .navbar-opened {
     width: 256px;
-    background-color: var(--bg-primary);
+    background-color: var(--nav-bar-primary);
     z-index: 2;
 }
 
@@ -98,7 +98,7 @@
     margin-bottom: 1rem;
     text-align: center;
     color: var(--text-secondary);
-    background: var(--bg-secondary);
+    background: var(--nav-bar-hover);
     letter-spacing: 0.3ch;
     width: 100%;
 }
@@ -164,7 +164,7 @@
     .navbar-background {
         width: 100%;
         height: 80px;
-        background-color: var(--bg-secondary);
+        background-color: var(--nav-bar-hover);
         position: fixed;
         top: 0;
         left: 0;

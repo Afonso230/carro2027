@@ -10,7 +10,7 @@
     <div class="tabs-container">
         <mat-tab-group>
             <mat-tab label="Pagas">
-                <table mat-table [dataSource]="dataSourcePaid " matSort class="mat-elevation-z8">
+                <table mat-table *ngIf="dataSourcePaid?.data?.length > 0" [dataSource]="dataSourcePaid"  matSort class="mat-elevation-z8">
                     <ng-container matColumnDef="month">
                         <th mat-header-cell *matHeaderCellDef>Mês</th>
                         <td mat-cell *matCellDef="let element">{{element.month}}</td>
@@ -29,9 +29,10 @@
                     *matRowDef="let row; columns: displayedColumnsPaid;"></tr>
                 
                 </table>
+                <h2 *ngIf="dataSourcePaid?.data?.length === 0" class="no-quotas-message">Sem quotas pagas.</h2>
             </mat-tab>
             <mat-tab label="Por pagar">
-                <table mat-table [dataSource]="dataSourceUnpaid" matSort class="mat-elevation-z8">
+                <table mat-table *ngIf="dataSourceUnpaid?.data?.length > 0" [dataSource]="dataSourceUnpaid" matSort class="mat-elevation-z8">
                     <ng-container matColumnDef="month">
                         <th mat-header-cell *matHeaderCellDef>Mês</th>
                         <td mat-cell *matCellDef="let element">{{element.month}}</td>
@@ -45,6 +46,7 @@
                     <tr mat-row 
                     *matRowDef="let row; columns: ['month','valor'];"></tr>
                 </table>
+                <h2 *ngIf="dataSourceUnpaid?.data?.length === 0" class="no-quotas-message">Sem quotas por pagar.</h2>
             </mat-tab>
         </mat-tab-group>
     </div>

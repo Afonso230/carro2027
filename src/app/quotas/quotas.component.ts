@@ -2,12 +2,14 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { QuotasService } from '../quotas.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserService } from '../user.service';
+import { user } from '@angular/fire/auth';
 
 
 export interface UserData {
   id : string,
   name : string,
-  type : number
+  type 
 }
 
 export interface PaidQuotas {
@@ -34,6 +36,8 @@ export class QuotasComponent {
   paidQuotas: PaidQuotas[] = [];
   unpaidQuotas : UnpaidQuota[] = [];
 
+  userData : UserData 
+
   dataSourcePaid ;
   dataSourceUnpaid ;
 
@@ -41,11 +45,18 @@ export class QuotasComponent {
 
  constructor(
   private quotasService : QuotasService,
-  private breakPointObserver : BreakpointObserver
+  private breakPointObserver : BreakpointObserver,
+  private userService : UserService
  ){
  }
 
  ngOnInit(){
+  this.userService.getUserInfo(this.userId).subscribe((result) => {
+    this.userData = result
+    this.userData.type = this.userService.getUserTypeByNumber(result.type).tipo
+    console.log(this.userData , "informação a usar")
+  })
+
   this.breakPointObserver.observe([Breakpoints.Small,Breakpoints.Handset]).subscribe((result)=>{
       if (result.matches){
         this.displayedColumnsPaid = ['month','paymentDate']
@@ -61,7 +72,7 @@ export class QuotasComponent {
       quota.valor = valorTotal
       quota.month = this.getMonthStringFromMonthCode(quota.month)
     }
-    this.unpaidQuotas = value
+    //this.unpaidQuotas = value
     this.dataSourceUnpaid = new MatTableDataSource(this.unpaidQuotas);
     console.log(this.unpaidQuotas, "unpaidQuotas");
   })
