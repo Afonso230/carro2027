@@ -10,6 +10,10 @@ import { StorageService } from '../storage.service';
 import { AddPaymentDialogComponent } from '../add-payment-dialog/add-payment-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CreateEventDialogComponent } from '../create-event-dialog/create-event-dialog.component';
+import { CalendarioService, Evento } from '../calendario.service';
+import { AccountService } from '../account.service';
+import { increment } from '@angular/fire/database';
 
 export interface UserMonthQuota {
   id : string;
@@ -18,6 +22,14 @@ export interface UserMonthQuota {
   paymentStatus : boolean;
   paymentDate : Date;
   fine : number;
+}
+
+interface AccountInfo {
+  totalValue : number;
+  income : number;
+  expenses : number;
+  handTotal : number;
+  accountTotal : number;
 }
 
 export interface MonthData{
@@ -42,18 +54,24 @@ export class AdminComponent {
 
   usersPayments: UserMonthQuota[];
 
+  eventList : Evento[] = []
+
   valor: number;
 
   dataSource ;
 
   displayedColumns = ['type','name','paymentStatus','paymentDate','fine','opt']
 
+  accountInfo : AccountInfo
+
   constructor(
     private userService : UserService,
+    private calendarioService:CalendarioService,
     private quotasService : QuotasService,
     private matDialog: MatDialog,
     private dialogService : DialogService,
-    private breakPointObserver : BreakpointObserver
+    private breakPointObserver : BreakpointObserver,
+    private accountService : AccountService
   ){}
 
   ngOnInit() {
@@ -63,9 +81,14 @@ export class AdminComponent {
       } else {
         this.displayedColumns = ['type','name','paymentStatus','paymentDate','fine','opt']
       }
+    });
+    this.getAccountBalance();
+    this.calendarioService.getEvents().subscribe((events)=>{
+      this.eventList = events 
     })
+
     this.gerarMeses();
-    this.getAllUsers()
+    this.getAllUsers();
   }
 
   gerarMeses() {
@@ -100,6 +123,18 @@ export class AdminComponent {
       }
     }
     return null
+  }
+
+  getAccountBalance(){
+    this.accountService.getAccountBalance().subscribe((balance)=>{
+      this.accountInfo = {
+        income : balance.income,
+        expenses : balance.expenses,
+        handTotal : balance.handTotal,
+        accountTotal : balance.income - balance.expenses,
+        totalValue : balance.income - balance.expenses + balance.handTotal
+      }
+    })
   }
 
   getAllUsers(){
@@ -192,6 +227,16 @@ export class AdminComponent {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openEventCreator(){ 
+    this.matDialog.open(CreateEventDialogComponent,{
+      ...this.dialogService.getGenericDialogConfig(),
+    })
+  }
+
+  getColorForEvent(event:Evento){
+    return this.calendarioService.getEventType(event.tipo).color
   }
 }
 

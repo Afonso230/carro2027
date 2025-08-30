@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CalendarioService, Event } from '../calendario.service';
+import { CalendarioService, Evento } from '../calendario.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowDayDialogComponent } from '../show-day-dialog/show-day-dialog.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -13,7 +13,7 @@ import { CreateEventDialogComponent } from '../create-event-dialog/create-event-
     standalone: false
 })
 export class CalendarioComponent {
-month = new Date().getMonth()
+  month = new Date().getMonth()
   year = new Date().getFullYear()
   // false when there's no value in #day-event and true otherwise
   eventsShown = false
@@ -25,7 +25,7 @@ month = new Date().getMonth()
   monthAndYear = ""
   dateSelected = ""
   
-  eventList : Event[] = []
+  eventList : Evento[] = []
 
   constructor(
     private calendarService:CalendarioService,
@@ -35,7 +35,7 @@ month = new Date().getMonth()
 
   ngOnInit(){
       this.calendarService.getEvents().subscribe((events)=>{
-        this.eventList=events 
+        this.eventList = events 
         this.updateMonth()
         this.buildCalendar()
       })
@@ -103,12 +103,6 @@ month = new Date().getMonth()
         dia: new Date(this.year, this.month, day)
       }
     });
-  }
-  
-  openEventCreator(){ 
-    this.matDialog.open(CreateEventDialogComponent,{
-      ...this.dialogService.getGenericDialogConfig(),
-    })
   }
 }
 

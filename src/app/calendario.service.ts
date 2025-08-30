@@ -3,7 +3,7 @@ import { map, Observable, of } from 'rxjs';
 import { StorageService } from './storage.service';
 
 
-export interface Event{
+export interface Evento{
   id: number;
   data:number;
   titulo:string;
@@ -43,7 +43,7 @@ export class CalendarioService {
     private storageService:StorageService
   ) { }
 
-  getEvents():Observable<Event[]>{
+  getEvents():Observable<Evento[]>{
     return this.storageService.getList("events").pipe(map(data=>{
       return data.map((event)=>{
         event.data = new Date(event.data)
@@ -52,9 +52,9 @@ export class CalendarioService {
     }))
   }
 
-  getEventsForDay(date:Date) :Observable<Event[]> {
+  getEventsForDay(date:Date) :Observable<Evento[]> {
     return this.getEvents().pipe(map(events=>{
-      var eventsForDay = events.filter((value:Event)=>{
+      var eventsForDay = events.filter((value:Evento)=>{
         var eventDate = new Date(value.data)
         return eventDate.getDate() === date.getDate() && eventDate.getMonth() === date.getMonth() && eventDate.getFullYear() === date.getFullYear()
       })
@@ -71,7 +71,7 @@ export class CalendarioService {
     return this.eventTypes
   }
 
-  addEvent(event :Event){
+  addEvent(event :Evento){
     return this.storageService.pushData("events", event)
   }
 }

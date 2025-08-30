@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CalendarioService, Event } from '../calendario.service';
+import { CalendarioService, Evento } from '../calendario.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateEventDialogComponent } from '../create-event-dialog/create-event-dialog.component'; //euuuuuuuuuu
 import { DialogService } from '../utils/dialog.service';
@@ -18,7 +18,7 @@ export interface EventDialogData {
 })
 export class ShowDayDialogComponent {
   
-  events : Event[] 
+  events : Evento[] 
 
   constructor(
     public dialogRef : MatDialogRef<ShowDayDialogComponent>,
@@ -29,7 +29,7 @@ export class ShowDayDialogComponent {
   ){}
 
   ngOnInit(){
-    this.calendarioService.getEventsForDay(this.data.dia).subscribe((value:Event[])=>{
+    this.calendarioService.getEventsForDay(this.data.dia).subscribe((value:Evento[])=>{
       this.events = value
     })
   }
@@ -38,7 +38,7 @@ export class ShowDayDialogComponent {
     this.dialogRef.close();
   }
 
-  getColorForEvent(event:Event){
+  getColorForEvent(event:Evento){
     return this.calendarioService.getEventType(event.tipo).color
   }
 

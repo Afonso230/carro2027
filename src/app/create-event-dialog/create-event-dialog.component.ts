@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EventDialogData } from '../show-day-dialog/show-day-dialog.component';
-import { CalendarioService, Event, EventType } from '../calendario.service';
+import { CalendarioService, Evento, EventType } from '../calendario.service';
 import { MatTimepicker } from '@angular/material/timepicker';
 import { MatDatepickerControl, MatDatepickerPanel } from '@angular/material/datepicker';
 import { sequence } from '@angular/animations';
@@ -47,7 +47,7 @@ export class CreateEventDialogComponent {
       this.descricao = "Sem descrição"
     } 
     var randomId = Math.floor(Math.random() * 1000000 );
-    var eventToAdd : Event ={
+    var eventToAdd : Evento ={
       id : randomId,
       data : this.eventTime.getTime(),
       descricao : this.descricao,
