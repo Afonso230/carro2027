@@ -47,9 +47,7 @@ export class CreateEventDialogComponent {
     } else if(!this.descricao || this.descricao==="") {
       this.descricao = "Sem descrição"
     } 
-    var randomId = Math.floor(Math.random() * 1000000 );
     var eventToAdd : Evento ={
-      id : randomId,
       data : this.eventTime.getTime(),
       descricao : this.descricao,
       tipo : this.tipo,

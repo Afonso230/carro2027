@@ -4,7 +4,7 @@ import { StorageService } from './storage.service';
 
 
 export interface Evento{
-  id: number;
+  id?: string;
   data:number;
   titulo:string;
   descricao:string;
@@ -44,11 +44,14 @@ export class CalendarioService {
   ) { }
 
   getEvents():Observable<Evento[]>{
-    return this.storageService.getList("events").pipe(map(data=>{
-      return data.map((event)=>{
-        event.data = new Date(event.data)
-        return event
-      })
+    return this.storageService.getData("events").pipe(map(data=>{
+      var eventsToReturn:Evento[] = [] 
+      for(var id in data){
+        var eventToAdd = data[id]
+        eventToAdd["id"] = id
+        eventsToReturn.push(eventToAdd)
+      }
+      return eventsToReturn
     }))
   }
 
