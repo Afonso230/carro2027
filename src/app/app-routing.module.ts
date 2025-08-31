@@ -25,10 +25,11 @@ const routes: Routes = [
         path:'perfil',
         component: PerfilComponent
     },
+    /*
     {
         path:'atas',
         component: AtasComponent
-    },
+    },*/
     {
         path:'regras',
         component: RegrasComponent

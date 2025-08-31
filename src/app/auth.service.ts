@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, UserCredential } from '@angular/fire/auth';
-import { defer, Observable } from 'rxjs';
+import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, User, UserCredential } from '@angular/fire/auth';
+import { BehaviorSubject, defer, Observable } from 'rxjs';
+import { User as UserData, UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,19 @@ export class AuthService {
 
   authenticated = false
   
+  user$ = new BehaviorSubject<User | null>(null)
+  userData : UserData
+
   constructor(
     private auth : Auth,
-  ) {}
+    private userService : UserService
+  ) 
+  {
+
+  onAuthStateChanged(this.auth,(user)=>{
+    this.user$.next(user)
+  })
+  }
   
   isAutheticated(){
     return this.authenticated
@@ -23,6 +34,10 @@ export class AuthService {
 
   login(email : string, password : string):Observable<UserCredential>{
     return defer(()=>signInWithEmailAndPassword(this.auth,email,password))
+  }
+  
+  logOut(){
+    return signOut(this.auth)
   }
   
   logInGoogle():Promise<UserCredential>{

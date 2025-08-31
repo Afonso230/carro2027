@@ -6,6 +6,7 @@ import { UserService } from '../user.service';
 import { user } from '@angular/fire/auth';
 import { DialogService } from '../utils/dialog.service';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../auth.service';
 
 
 export interface UserData {
@@ -34,7 +35,7 @@ export interface UnpaidQuota {
 })
 export class QuotasComponent {
 
-  userId = "jaP0FMo7EmNgEHBp0zub1CBqtn52"
+  userId 
   paidQuotas: PaidQuotas[] = [];
   unpaidQuotas : UnpaidQuota[] = [];
 
@@ -49,46 +50,52 @@ export class QuotasComponent {
   private quotasService : QuotasService,
   private breakPointObserver : BreakpointObserver,
   private userService : UserService,
+  private authService : AuthService
  ){
  }
 
  ngOnInit(){
-  this.userService.getUserInfo(this.userId).subscribe((result) => {
-    this.userData = result
-    this.userData.type = this.userService.getUserTypeByNumber(result.type).tipo
-    console.log(this.userData , "informação a usar")
-  })
+  this.authService.user$.subscribe((user)=>{
+    if(user){
+      this.userId = user.uid
+      this.userService.getUserInfo(this.userId).subscribe((result) => {
+        this.userData = result
+        this.userData.type = this.userService.getUserTypeByNumber(result.type).tipo
+        console.log(this.userData , "informação a usar")
+      })
 
-  this.breakPointObserver.observe([Breakpoints.Small,Breakpoints.Handset]).subscribe((result)=>{
-      if (result.matches){
-        this.displayedColumnsPaid = ['month','paymentDate']
-      } else {
-        this.displayedColumnsPaid = ['month','valor','paymentDate']
-      }
-  })
+      this.breakPointObserver.observe([Breakpoints.Small,Breakpoints.Handset]).subscribe((result)=>{
+          if (result.matches){
+            this.displayedColumnsPaid = ['month','paymentDate']
+          } else {
+            this.displayedColumnsPaid = ['month','valor','paymentDate']
+          }
+      })
 
-  this.quotasService.getUnpaidQuotasForUser(this.userId).subscribe((value) => {
-    for(var quota of value){
-      var multa = this.quotasService.calculateFineForDate(new Date(), quota.month)
-      var valorTotal = quota.valor + multa
-      quota.valor = valorTotal
-      quota.month = this.getMonthStringFromMonthCode(quota.month)
+      this.quotasService.getUnpaidQuotasForUser(this.userId).subscribe((value) => {
+        for(var quota of value){
+          var multa = this.quotasService.calculateFineForDate(new Date(), quota.month)
+          var valorTotal = quota.valor + multa
+          quota.valor = valorTotal
+          quota.month = this.getMonthStringFromMonthCode(quota.month)
+        }
+        this.unpaidQuotas = value
+        this.dataSourceUnpaid = new MatTableDataSource(this.unpaidQuotas);
+        console.log(this.unpaidQuotas, "unpaidQuotas");
+      })
+
+      this.quotasService.getPaidQuotasForUser(this.userId).subscribe((value) => {
+        for(var quota of value){
+          var multa = this.quotasService.calculateFineForDate(quota.paymentDate, quota.month)
+          var valorTotal = quota.valor + multa
+          quota.valor = valorTotal
+          quota.month = this.getMonthStringFromMonthCode(quota.month)
+        }
+        this.paidQuotas = value
+        this.dataSourcePaid = new MatTableDataSource(this.paidQuotas);
+        console.log(this.paidQuotas, "paidQuotas");
+      })
     }
-    this.unpaidQuotas = value
-    this.dataSourceUnpaid = new MatTableDataSource(this.unpaidQuotas);
-    console.log(this.unpaidQuotas, "unpaidQuotas");
-  })
-
-  this.quotasService.getPaidQuotasForUser(this.userId).subscribe((value) => {
-    for(var quota of value){
-      var multa = this.quotasService.calculateFineForDate(quota.paymentDate, quota.month)
-      var valorTotal = quota.valor + multa
-      quota.valor = valorTotal
-      quota.month = this.getMonthStringFromMonthCode(quota.month)
-    }
-    this.paidQuotas = value
-    this.dataSourcePaid = new MatTableDataSource(this.paidQuotas);
-    console.log(this.paidQuotas, "paidQuotas");
   })
 }
 
