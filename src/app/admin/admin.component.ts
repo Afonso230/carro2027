@@ -259,5 +259,12 @@ export class AdminComponent {
       }
     })
   }
+
+  deleteEvent(event : Evento){
+    var userConfirm = confirm("Queres apagar o evento " + event.titulo)
+    if(userConfirm){
+      this.calendarioService.deleteEvent(event)
+    }
+  }
 }
 

@@ -74,4 +74,8 @@ export class CalendarioService {
   addEvent(event :Evento){
     return this.storageService.pushData("events", event)
   }
+
+  deleteEvent(event :Evento){
+    return this.storageService.deleteData(`events/${event.id}`)
+  }
 }

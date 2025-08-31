@@ -74,7 +74,7 @@ export class QuotasComponent {
       quota.valor = valorTotal
       quota.month = this.getMonthStringFromMonthCode(quota.month)
     }
-    //this.unpaidQuotas = value
+    this.unpaidQuotas = value
     this.dataSourceUnpaid = new MatTableDataSource(this.unpaidQuotas);
     console.log(this.unpaidQuotas, "unpaidQuotas");
   })
