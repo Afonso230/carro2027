@@ -7,8 +7,6 @@ import { User as UserData, UserService } from './user.service';
   providedIn: 'root'
 })
 export class AuthService {
-
-  authenticated = false
   
   user$ = new BehaviorSubject<User | null>(null)
   userData : UserData
@@ -16,16 +14,19 @@ export class AuthService {
   constructor(
     private auth : Auth,
     private userService : UserService
-  ) 
-  {
-
-  onAuthStateChanged(this.auth,(user)=>{
-    this.user$.next(user)
-  })
+  ) {
+    onAuthStateChanged(this.auth,(user)=>{
+      this.user$.next(user)
+      if(user){
+        this.userService.getUserInfo(user.uid).subscribe((userInfo) => {
+          this.userData = userInfo;
+        })
+      }
+    })
   }
-  
-  isAutheticated(){
-    return this.authenticated
+
+  getUserData() : UserData {
+    return this.userData;
   }
 
   registerUser(email : string, password : string):Observable<UserCredential>{
@@ -37,6 +38,7 @@ export class AuthService {
   }
   
   logOut(){
+    this.userData = null;
     return signOut(this.auth)
   }
   
