@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
     {
         path:'',
-        redirectTo:'/quotas',pathMatch:'full'
+        redirectTo:'/login',pathMatch:'full'
     },
     {
         path:'quotas',

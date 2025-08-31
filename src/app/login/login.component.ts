@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { DialogService } from '../utils/dialog.service';
+import { MatDialog} from '@angular/material/dialog';
+import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -8,4 +11,14 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  constructor(
+  private dialogService : DialogService,
+  private matDialog: MatDialog,
+  ){}
+
+  openRegisterDialog(){ 
+    this.matDialog.open(RegisterDialogComponent,{
+      ...this.dialogService.getGenericDialogConfig(),
+    })
+  }
 }

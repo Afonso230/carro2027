@@ -72,7 +72,8 @@ export class AdminComponent {
     private dialogService : DialogService,
     private breakPointObserver : BreakpointObserver,
     private accountService : AccountService
-  ){}
+  ){
+  }
 
   ngOnInit() {
     this.breakPointObserver.observe([Breakpoints.Small,Breakpoints.Handset]).subscribe((result)=>{

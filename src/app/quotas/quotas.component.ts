@@ -4,6 +4,8 @@ import { QuotasService } from '../quotas.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from '../user.service';
 import { user } from '@angular/fire/auth';
+import { DialogService } from '../utils/dialog.service';
+import { MatDialog } from '@angular/material/dialog';
 
 
 export interface UserData {
@@ -46,7 +48,7 @@ export class QuotasComponent {
  constructor(
   private quotasService : QuotasService,
   private breakPointObserver : BreakpointObserver,
-  private userService : UserService
+  private userService : UserService,
  ){
  }
 
@@ -104,5 +106,6 @@ export class QuotasComponent {
     // Outubro de 2025
     return stringMesApresentada 
   }
+
 
 }

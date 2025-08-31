@@ -13,6 +13,7 @@ import { stringify } from 'querystring';
     styleUrl: './create-event-dialog.component.css',
     standalone: false
 })
+
 export class CreateEventDialogComponent {
   eventTypes: EventType[] = [];
   eventTime: Date

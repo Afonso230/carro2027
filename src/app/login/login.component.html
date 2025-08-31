@@ -10,16 +10,17 @@
     </mat-card-header>
     <mat-card-content>
       <form class="login-form">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input matInput placeholder="nome@carro2027.bioq" required type="email">
           <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Senha</mat-label>
           <input matInput type="password" required>
           <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
+        <p (click)="openRegisterDialog()" style="cursor: pointer;">Registar novo utilizador</p>
         <button mat-raised-button color="primary" class="login-button">Entrar</button>
       </form>
     </mat-card-content>

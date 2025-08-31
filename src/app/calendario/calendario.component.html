@@ -1,31 +1,29 @@
-<div class="container">
-    <div class="calendar-container">
-        <div class="calendar">
-            <div class="choose-month">
-                <div class="current-month" id="month-n-year">
-                    <div>{{monthAndYear}}</div>
-                </div>
-                <div class="month-buttons">
-                    <mat-icon aria-hidden="false" aria-label="Previous month" fontIcon="chevron_left" (click)="prevMonth()" class="change-month-buttons"></mat-icon>
-                    <mat-icon aria-hidden="false" aria-label="Previous month" fontIcon="chevron_right" (click)="nextMonth()" class="change-month-buttons"></mat-icon>
-                </div>
+<div class="calendar-container">
+    <div class="calendar">
+        <div class="choose-month">
+            <div class="current-month" id="month-n-year">
+                <div>{{monthAndYear}}</div>
             </div>
-            <div class="inner-calendar">
-                <div class="week-days calendar-grid">
-                    <div class="week-day">Dom</div>
-                    <div class="week-day">Seg</div>
-                    <div class="week-day">Ter</div>
-                    <div class="week-day">Qua</div>
-                    <div class="week-day">Qui</div>
-                    <div class="week-day">Sex</div>
-                    <div class="week-day">Sáb</div>
-                </div>
-                <div class="days calendar-grid" id="calendar-days">
-                    <!--goes to the variable calendarDays and puts each element in a variable called day. proceeds to print that element with the class "day"-->
-                    <div *ngFor="let day of calendarDays" class="day" [class.valid-day]="day.day !==''" [class.day-selected] = "dateSelected === day + ' ' + monthAndYear" (click)="openDay(day.day)">
-                        <div [ngStyle]="day.day === today.getDate() && month === today.getMonth() && year === today.getFullYear()?{'background-color':'var(--calendar-blue)'}:{'background-color':'#ffffff00'}" class="circle-day">{{day.day}}</div>
-                        <div [ngStyle]="day.day && day.hasEvents ?{'background-color':'purple'}:{'background-color':'#ffffff00'}" class="has-event"></div>
-                    </div>
+            <div class="month-buttons">
+                <mat-icon aria-hidden="false" aria-label="Previous month" fontIcon="chevron_left" (click)="prevMonth()" class="change-month-buttons"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Previous month" fontIcon="chevron_right" (click)="nextMonth()" class="change-month-buttons"></mat-icon>
+            </div>
+        </div>
+        <div class="inner-calendar">
+            <div class="week-days calendar-grid">
+                <div class="week-day">Dom</div>
+                <div class="week-day">Seg</div>
+                <div class="week-day">Ter</div>
+                <div class="week-day">Qua</div>
+                <div class="week-day">Qui</div>
+                <div class="week-day">Sex</div>
+                <div class="week-day">Sáb</div>
+            </div>
+            <div class="days calendar-grid" id="calendar-days">
+                <!--goes to the variable calendarDays and puts each element in a variable called day. proceeds to print that element with the class "day"-->
+                <div *ngFor="let day of calendarDays" class="day" [class.valid-day]="day.day !==''" [class.day-selected] = "dateSelected === day + ' ' + monthAndYear" (click)="openDay(day.day)">
+                    <div [ngStyle]="day.day === today.getDate() && month === today.getMonth() && year === today.getFullYear()?{'background-color':'var(--calendar-blue)'}:{'background-color':'#ffffff00'}" class="circle-day">{{day.day}}</div>
+                    <div [ngStyle]="day.day && day.hasEvents ?{'background-color':'purple'}:{'background-color':'#ffffff00'}" class="has-event"></div>
                 </div>
             </div>
         </div>
