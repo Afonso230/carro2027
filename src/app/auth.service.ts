@@ -25,8 +25,8 @@ export class AuthService {
     return defer(()=>signInWithEmailAndPassword(this.auth,email,password))
   }
   
-  logInGoogle():Observable<UserCredential>{
+  logInGoogle():Promise<UserCredential>{
     var provider = new GoogleAuthProvider()
-    return defer(()=>signInWithPopup(this.auth,provider))
+    return signInWithPopup(this.auth,provider)
   }
 }

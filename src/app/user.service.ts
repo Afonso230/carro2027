@@ -6,7 +6,8 @@ export interface User {
   role: string;
   name: string;
   type: number;
-  id: string 
+  id: string;
+  ready? : boolean
 }
 
 export interface UserType {
@@ -46,7 +47,25 @@ export class UserService {
       for(var id in result){
         var tempUser = result[id]
         tempUser["id"] = id
-        userList.push(tempUser)
+        if(tempUser.ready)
+        {
+          userList.push(tempUser)
+        }
+      }
+      return userList
+    }))
+  }
+
+  getAllInactiveUsers():Observable<User[]>{
+    return this.storageService.getData("users").pipe(map(result=>{
+      var userList = []
+      for(var id in result){
+        var tempUser = result[id]
+        tempUser["id"] = id
+        if(!tempUser.ready)
+        {
+          userList.push(tempUser)
+        }
       }
       return userList
     }))
@@ -60,6 +79,17 @@ export class UserService {
     return this.usersType[type]
   }
 
+  getAllUserTypes():UserType[]{
+    var result = []
+    for (var i = 0; i<this.usersType.length ; i++){
+      result.push({
+        id : i,
+        type : this.usersType[i].tipo
+      })
+    }
+    return result
+  }
+
   getNumberByUserType(userType : string){
     for(var i = 0 ; i < this.usersType.length ; i++){
       if(this.usersType[i].tipo === userType) {
@@ -67,5 +97,18 @@ export class UserService {
       }
     }
     return -1
+  }
+
+  registerUser(id:string , name:string){
+    return this.storageService.setData(`users/${id}`,{
+      name : name,
+      ready : false 
+    })
+  }
+
+  finishRegistration(id : string, data){
+    console.log(id)
+    console.log(data)
+    return this.storageService.setData(`users/${id}`,data)
   }
 }

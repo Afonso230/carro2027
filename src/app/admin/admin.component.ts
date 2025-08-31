@@ -14,6 +14,7 @@ import { CreateEventDialogComponent } from '../create-event-dialog/create-event-
 import { CalendarioService, Evento } from '../calendario.service';
 import { AccountService } from '../account.service';
 import { increment } from '@angular/fire/database';
+import { CompleteRegisterDialogComponent } from '../complete-register-dialog/complete-register-dialog.component';
 
 export interface UserMonthQuota {
   id : string;
@@ -63,6 +64,8 @@ export class AdminComponent {
   displayedColumns = ['type','name','paymentStatus','paymentDate','fine','opt']
 
   accountInfo : AccountInfo
+  
+  usersToActivate : User[]
 
   constructor(
     private userService : UserService,
@@ -88,6 +91,7 @@ export class AdminComponent {
       this.eventList = events 
     })
 
+    this.getInactiveUserList();
     this.gerarMeses();
     this.getAllUsers();
   }
@@ -238,6 +242,22 @@ export class AdminComponent {
 
   getColorForEvent(event:Evento){
     return this.calendarioService.getEventType(event.tipo).color
+  }
+
+  getInactiveUserList(){
+    this.userService.getAllInactiveUsers().subscribe((result)=>{
+     this.usersToActivate = result
+    })
+  }
+
+  finishRegisterUser(user : User){
+    this.matDialog.open(CompleteRegisterDialogComponent,{
+      ...this.dialogService.getGenericDialogConfig(),
+      data: {
+        id : user.id,
+        name : user.name,
+      }
+    })
   }
 }
 

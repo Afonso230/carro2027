@@ -117,6 +117,14 @@ td , th{
     right: 5px;
 }
 
+.user-button {
+    margin: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.04);
+}
+
 @media screen and (max-width: 599px){
     .tabs-container{
         box-sizing: border-box;

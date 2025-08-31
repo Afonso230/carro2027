@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../auth.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register-dialog',
@@ -15,10 +16,11 @@ export class RegisterDialogComponent {
   password;
 
   hide = signal(true);
-  
+
   constructor(
   public dialogRef : MatDialogRef<RegisterDialogComponent>,
   private authService : AuthService,
+  private userService : UserService
  ){}
 
   clickEvent(event: MouseEvent) {
@@ -26,11 +28,15 @@ export class RegisterDialogComponent {
     event.stopPropagation();
   } 
 
- 
-
  signUp(){
   this.authService.registerUser(this.email,this.password).subscribe((user)=>{
     console.log(user)
+    var displayName = user.user.displayName
+    var firstName = displayName.substring(0,displayName.indexOf(" "))
+    var lastName = displayName.substring(displayName.length - displayName.split("").reverse().join("").indexOf(" "))
+    this.userService.registerUser(user.user.uid,firstName + " " + lastName)
   })
  }
+
+ 
 }

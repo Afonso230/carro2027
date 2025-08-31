@@ -39,7 +39,9 @@ import { SeeAccountDialogComponent } from './see-account-dialog/see-account-dial
 import { AddPaymentDialogComponent } from './add-payment-dialog/add-payment-dialog.component';
 import { AgCharts, AgChartsModule } from 'ag-charts-angular';
 import { MatSortModule } from '@angular/material/sort';
-import { RegisterDialogComponent } from './register-dialog/register-dialog.component'
+import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
+import { MatListModule } from '@angular/material/list';
+import { CompleteRegisterDialogComponent } from './complete-register-dialog/complete-register-dialog.component'
 
 registerLocaleData(localePt)
 
@@ -57,7 +59,8 @@ registerLocaleData(localePt)
     LoginComponent,
     SeeAccountDialogComponent,
     AddPaymentDialogComponent,
-    RegisterDialogComponent
+    RegisterDialogComponent,
+    CompleteRegisterDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,8 @@ registerLocaleData(localePt)
     MatMenuModule,
     AgChartsModule,
     AgCharts,
-    MatSortModule
+    MatSortModule,
+    MatListModule
   ],
   providers: [
     provideClientHydration(),

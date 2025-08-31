@@ -32,6 +32,13 @@ mat-form-field {
   margin-top: 15px;
 }
 
+.login-google{
+  margin: 10px;
+  margin-left: 0;
+  width: 100%;
+}
+
+
 @media screen and (max-width: 599px) {
   .login-container{
     margin-left: 20px; 
