@@ -64,7 +64,6 @@ export class QuotasComponent {
         this.userData = result
         this.userData.type = this.userService.getUserTypeByNumber(result.type).tipo
         this.initials = this.getInitials(this.userData.name)
-        console.log(this.userData , "informação a usar")
       })
 
       this.breakPointObserver.observe([Breakpoints.Small,Breakpoints.Handset]).subscribe((result)=>{
@@ -84,7 +83,6 @@ export class QuotasComponent {
         }
         this.unpaidQuotas = value
         this.dataSourceUnpaid = new MatTableDataSource(this.unpaidQuotas);
-        console.log(this.unpaidQuotas, "unpaidQuotas");
       })
 
       this.quotasService.getPaidQuotasForUser(this.userId).subscribe((value) => {
@@ -95,8 +93,7 @@ export class QuotasComponent {
           quota.month = this.getMonthStringFromMonthCode(quota.month)
         }
         this.paidQuotas = value
-        this.dataSourcePaid = new MatTableDataSource(this.paidQuotas);
-        console.log(this.paidQuotas, "paidQuotas");
+        this.dataSourcePaid = new MatTableDataSource(this.paidQuotas);;
       })
 
     }

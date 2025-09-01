@@ -54,7 +54,6 @@ export class LoginComponent {
       })
     )
     .subscribe((userData)=>{
-      console.log(userData)
       this.userService.getUserInfo(userData.user.uid).subscribe((userData)=>{
         if(!userData){
           alert("Erro interno. Fala com a comissão. Código de erro: 02x410")
@@ -69,7 +68,6 @@ export class LoginComponent {
 
   loginGoogle(){
     this.authService.logInGoogle().then((user)=>{
-      console.log(user)
       this.userService.getUserInfo(user.user.uid).subscribe((userData)=>{
         if (!userData){
           var displayName = user.user.displayName

@@ -46,7 +46,6 @@ export class SeeAccountDialogComponent {
   private quotasService : QuotasService,
   private breakPointObserver : BreakpointObserver
  ){
-  console.log(data.name, data.id, data.type)
  }
 
  ngOnInit(){
@@ -67,7 +66,6 @@ export class SeeAccountDialogComponent {
     }
     this.unpaidQuotas = value
     this.dataSourceUnpaid = new MatTableDataSource(this.unpaidQuotas);
-    console.log(this.unpaidQuotas, "unpaidQuotas");
   })
 
   this.quotasService.getPaidQuotasForUser(this.data.id).subscribe((value) => {
@@ -79,7 +77,6 @@ export class SeeAccountDialogComponent {
     }
     this.paidQuotas = value
     this.dataSourcePaid = new MatTableDataSource(this.paidQuotas);
-    console.log(this.paidQuotas, "paidQuotas");
   })
 }
 

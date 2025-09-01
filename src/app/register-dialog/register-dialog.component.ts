@@ -39,6 +39,8 @@ export class RegisterDialogComponent {
     } else if(!this.password || this.password===""){
       alert("Obrigatório definir uma password")
       return;
+    } else if(this.password.length < 6){
+      alert("A password precisa de ter pelo menos 6 caracteres")
     }
   this.authService.registerUser(this.email,this.password)
   .pipe(

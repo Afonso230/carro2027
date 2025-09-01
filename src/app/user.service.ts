@@ -107,8 +107,6 @@ export class UserService {
   }
 
   finishRegistration(id : string, data){
-    console.log(id)
-    console.log(data)
     return this.storageService.setData(`users/${id}`,data)
   }
 }

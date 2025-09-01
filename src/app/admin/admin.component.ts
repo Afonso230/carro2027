@@ -3,7 +3,6 @@ import { User, UserService } from '../user.service';
 import { MonthQuotas, QuotasService } from '../quotas.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SeeAccountDialogComponent } from '../see-account-dialog/see-account-dialog.component';
-import { log } from 'console';
 import { UserMetadata } from '@angular/fire/auth';
 import { DialogService } from '../utils/dialog.service';
 import { StorageService } from '../storage.service';
