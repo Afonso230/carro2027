@@ -3,18 +3,20 @@
     <h3>Utilizador: {{data.name}}</h3>
     <div class="selects-container">
         <mat-form-field>
-            <mat-label>Nivel de utilizador</mat-label>
+            <mat-label>Nivel do utilizador</mat-label>
             <mat-select [(ngModel)]="role">
                 <mat-option value="user">Utilizador</mat-option>
                 <mat-option value="admin">Comissão</mat-option>
             </mat-select> 
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Nivel de utilizador</mat-label>
+            <mat-label>Pelouro</mat-label>
             <mat-select [(ngModel)]="type">
                 <mat-option *ngFor="let type of userTypes" value="{{type.id}}">{{type.type}}</mat-option>
             </mat-select> 
         </mat-form-field>
-        <button mat-raised-button (click)="finishRegister()">Ativar conta</button>
     </div>
+    <div class="add-button">
+        <button mat-raised-button (click)="finishRegister()">Ativar conta</button>
+     </div>
 </mat-dialog-content>

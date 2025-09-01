@@ -1,4 +1,13 @@
-.selects-containe{
+.selects-container{
     display: flex;
-    
+}
+
+.mat-mdc-form-field{
+    margin-right: 10px;
+}
+
+.add-button{
+    width: 100%;
+    display: flex;
+    justify-content: right;
 }
