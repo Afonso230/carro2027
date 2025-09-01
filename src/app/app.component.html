@@ -127,7 +127,7 @@
             </li> -->
             <li class="nav-link" >
                 <h5 *ngIf="!opened" id="user-name">{{nome}}</h5>
-                <h3 *ngIf="opened" id="user-name">{{nome}}</h3>
+                <h3 *ngIf="opened" id="user-name">Sessão iniciada como: <br>{{nome}}</h3>
             </li>
             <li class="nav-item" (click)="logOut()">
                 <a class="nav-link">
