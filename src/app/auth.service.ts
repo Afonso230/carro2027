@@ -22,6 +22,7 @@ export class AuthService {
           this.user$.next(user)
         })
       }else{
+        this.userData = null
         this.user$.next(user)
       }
     })

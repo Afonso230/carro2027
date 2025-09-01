@@ -13,6 +13,8 @@ export class AppComponent {
 
   opened = false;
 
+  nome
+
   showNavbar = false;
   admin = false;
 
@@ -41,6 +43,7 @@ export class AppComponent {
         if(this.authService.getUserData()?.role === "admin"){
           this.admin = true;
         }
+        this.nome = this.authService.getUserData()?.name
         this.showNavbar = true;
       }else{
         this.showNavbar = false;
