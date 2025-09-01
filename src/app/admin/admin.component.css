@@ -63,11 +63,17 @@ td , th{
     flex-grow: 4;
 }
 
+.grid-container{
+    display: flex;
+    justify-content: center;
+}
+
 .dashboard-grid{
+    align-self: center;
     display: grid;
     grid-template-columns: 0.333fr 0.333fr 0.333fr;
     grid-template-rows: 0.333fr 0.333fr 0.333fr;
-    width: 100%;
+    width: 70%;
     margin: 20px 0;
     grid-gap: 5px;
 }
@@ -75,31 +81,26 @@ td , th{
 .total-container{
     grid-row: 1;
     grid-column: 1 / 4;
-    background-color: yellow;
 }
 
 .lucros-container{
     grid-row: 2;
     grid-column: 1;
-    background-color: aquamarine;
 }
 
 .despesas-container{
     grid-row: 2;
     grid-column: 2;
-    background-color: blueviolet;
 }
 
 .mao-container{
     grid-row: 2 / 4;
     grid-column: 3;
-    background-color: aqua;
 }
 
 .conta-container{
     grid-row: 3;
     grid-column: 1 / 3;
-    background-color: brown;
 }
 
 .grid-element{
@@ -109,7 +110,19 @@ td , th{
     box-sizing: border-box;
     padding: 5px 7px;
     position: relative;
+    background-color: #E6E6E9;
 }
+
+.element-title{
+    font-weight: 500;
+    font-size: large;
+}
+
+.element-value{
+    font-weight: 800;
+    font-size: x-large
+}
+
 
 .add-value-button{
     position: absolute;
@@ -147,6 +160,11 @@ td , th{
     .add-event-button{
         width: -webkit-fill-available;
     }
+    
+    .dashboard-grid{
+        width: 100%;
+    }
+
 }
 
 @media screen and (min-width: 600px) and (max-width: 1400px){

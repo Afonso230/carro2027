@@ -1,36 +1,38 @@
 <div class="tabs-container">
     <mat-tab-group>
         <mat-tab label="Dashboard">
-            <div class="dashboard-grid">
-                <div class="total-container grid-element">
-                    <h3>Valor Total</h3>
-                    <h2>{{accountInfo?.totalValue}}</h2>
-                </div> 
-                <div class="lucros-container grid-element">
-                    <h3>Entradas</h3>
-                    <h2>{{accountInfo?.income}}</h2>
-                    <button mat-mini-fab color="primary" class="add-value-button">
-                        <mat-icon>add</mat-icon>
-                    </button>
+            <div class="grid-container">
+                <div class="dashboard-grid">
+                    <div class="total-container grid-element">
+                        <h3 class="element-title">Valor Total:</h3>
+                        <h2 class="element-value">{{accountInfo?.totalValue}}€</h2>
+                    </div> 
+                    <div class="lucros-container grid-element">
+                        <h3 class="element-title">Entradas:</h3>
+                        <h2 class="element-value">{{accountInfo?.income}}€</h2>
+                        <button mat-mini-fab color="primary" class="add-value-button">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <div class="despesas-container grid-element">
+                        <h3 class="element-title">Saídas:</h3>
+                        <h2 class="element-value">{{accountInfo?.expenses}}€</h2>
+                        <button mat-mini-fab color="primary" class="add-value-button">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <div class="mao-container grid-element">
+                            <h3 class="element-title">Valor em mão:</h3>
+                            <h2 class="element-value">{{accountInfo?.handTotal}}€</h2>
+                            <button mat-mini-fab color="primary" class="add-value-button">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                    </div>
+                    <div class="conta-container grid-element">
+                            <h3 class="element-title">valor conta:</h3>
+                            <h2 class="element-value">{{accountInfo?.accountTotal}}€</h2>
+                    </div>
                 </div>
-                <div class="despesas-container grid-element">
-                    <h3>Saídas</h3>
-                    <h2>{{accountInfo?.expenses}}</h2>
-                    <button mat-mini-fab color="primary" class="add-value-button">
-                        <mat-icon>add</mat-icon>
-                    </button>
-                </div>
-               <div class="mao-container grid-element">
-                    <h3>Valor em mão</h3>
-                    <h2>{{accountInfo?.handTotal}}</h2>
-                    <button mat-mini-fab color="primary" class="add-value-button">
-                        <mat-icon>add</mat-icon>
-                    </button>
-               </div>
-               <div class="conta-container grid-element">
-                    <h3>valor conta</h3>
-                    <h2>{{accountInfo?.accountTotal}}</h2>
-               </div>
             </div>
         </mat-tab>
         <mat-tab label="Quotas"> 
