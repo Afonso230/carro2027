@@ -107,8 +107,8 @@
             </table>  
         </mat-tab>
         <mat-tab label="Eventos"> 
-            <div class="add-event-button">
-                <button mat-flat-button (click)="openEventCreator()" color="primary">
+            <div class="add-event-button-container">
+                <button mat-flat-button (click)="openEventCreator()" color="primary" class="add-event-button">
                     Adicionar Evento
                 </button>
             </div>
@@ -127,7 +127,9 @@
                     <div class="event-container">
                         {{event.descricao}}
                     </div>
-                    <button mat-raised-button (click)="deleteEvent(event)">Eliminar Evento</button>
+                    <div class="delete-event-button">
+                        <button mat-raised-button (click)="deleteEvent(event)" >Eliminar Evento</button>
+                    </div>
                 </mat-expansion-panel>
             </mat-accordion>
         </mat-tab>

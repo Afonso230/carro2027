@@ -35,7 +35,7 @@ td , th{
     width: 100%;
 }
 
-.add-event-button {
+.add-event-button-container {
     margin-top: 20px;
     margin-right: 20px;
     padding-bottom: 20px;
@@ -124,13 +124,28 @@ td , th{
     background-color: rgba(0,0,0,0.04);
 }
 
+.delete-event-button{
+    margin-top: 10px;
+}
+
 @media screen and (max-width: 599px){
     .tabs-container{
         box-sizing: border-box;
         margin-top: 20px;
+        margin-bottom: 20px;
         margin-left: 15px;
         margin-right: 15px;
         width: calc(100% - 30px);
+    }
+
+    .add-event-button-container {
+        margin: 20px 20px;
+        flex-wrap: wrap;
+        width: calc(100% - 40px);
+    }
+
+    .add-event-button{
+        width: -webkit-fill-available;
     }
 }
 

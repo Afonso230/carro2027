@@ -5,6 +5,7 @@
   background-color: #fff;
   border-radius: 5px;
   margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
   grid-column: 2;
@@ -47,6 +48,7 @@
   .quotas-container{
     box-sizing: border-box;
     margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: 15px;
     margin-right: 15px;
     width: calc(100% - 30px);
