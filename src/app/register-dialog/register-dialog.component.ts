@@ -52,7 +52,8 @@ export class RegisterDialogComponent {
   )
   .subscribe((user)=>{
     var displayName = this.nome
-    var firstName = displayName.substring(0,displayName.indexOf(" "))
+    var positionOfSpace = displayName.indexOf(" ");
+    var firstName = positionOfSpace < 0 ? displayName : displayName.substring(0,displayName.indexOf(" "))
     var lastName = displayName.substring(displayName.length - displayName.split("").reverse().join("").indexOf(" "))
     this.userService.registerUser(user.user.uid,firstName + " " + lastName).then(()=>{
       this.authService.logOut().then(() => {
