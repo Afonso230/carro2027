@@ -41,6 +41,8 @@ export class QuotasComponent {
 
   userData : UserData 
 
+  initials: string = '';
+
   dataSourcePaid ;
   dataSourceUnpaid ;
 
@@ -61,6 +63,7 @@ export class QuotasComponent {
       this.userService.getUserInfo(this.userId).subscribe((result) => {
         this.userData = result
         this.userData.type = this.userService.getUserTypeByNumber(result.type).tipo
+        this.initials = this.getInitials(this.userData.name)
         console.log(this.userData , "informação a usar")
       })
 
@@ -95,6 +98,7 @@ export class QuotasComponent {
         this.dataSourcePaid = new MatTableDataSource(this.paidQuotas);
         console.log(this.paidQuotas, "paidQuotas");
       })
+
     }
   })
 }
@@ -114,5 +118,18 @@ export class QuotasComponent {
     return stringMesApresentada 
   }
 
-
+  getInitials(fullName: string): string {
+  if (!fullName) {
+    return '';
+  }
+  var nameParts = fullName.split(' ');
+  let initials = '';
+  if (nameParts.length > 0) {
+    initials += nameParts[0].charAt(0).toUpperCase(); 
+  }
+  if (nameParts.length > 1) {
+    initials += nameParts[nameParts.length - 1].charAt(0).toUpperCase(); 
+  }
+  return initials;
+}
 }
