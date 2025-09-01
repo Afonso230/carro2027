@@ -55,8 +55,10 @@ export class RegisterDialogComponent {
     var firstName = displayName.substring(0,displayName.indexOf(" "))
     var lastName = displayName.substring(displayName.length - displayName.split("").reverse().join("").indexOf(" "))
     this.userService.registerUser(user.user.uid,firstName + " " + lastName).then(()=>{
-      alert("O utlizador foi resgistado. Espera que a comissão te adicione")
-      this.dialogRef.close()
+      this.authService.logOut().then(() => {
+        alert("O utlizador foi resgistado. Espera que a comissão te adicione")
+        this.dialogRef.close()
+      })
     })
   })
  }

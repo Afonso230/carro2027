@@ -13,16 +13,37 @@ export class AppComponent {
 
   opened = false;
 
+  showNavbar = false;
+  admin = false;
+
   constructor(
     private authService : AuthService,
     private router : Router
   ){}
+
+  ngOnInit() {
+    this.checkAuthentication()
+  }
 
   logOut(){
     this.authService.logOut().then(()=>{
       this.router.navigateByUrl("/")
       if(this.opened){
         this.triggerNavbar()
+      }
+      this.checkAuthentication()
+    })
+  }
+
+  checkAuthentication() {
+    this.authService.user$.subscribe((user) => {
+      if(user){
+        if(this.authService.getUserData()?.role === "admin"){
+          this.admin = true;
+        }
+        this.showNavbar = true;
+      }else{
+        this.showNavbar = false;
       }
     })
   }

@@ -26,6 +26,10 @@ export class LoginComponent {
   private router : Router
   ){}
 
+  ngOnInit() {
+    this.finishLogin()
+  }
+
   openRegisterDialog(){ 
     this.matDialog.open(RegisterDialogComponent,{
       ...this.dialogService.getGenericDialogConfig(),
@@ -72,10 +76,14 @@ export class LoginComponent {
           var firstName = displayName.substring(0,displayName.indexOf(" "))
           var lastName = displayName.substring(displayName.length - displayName.split("").reverse().join("").indexOf(" "))
           this.userService.registerUser(user.user.uid,firstName + " " + lastName).then(()=>{
-            alert("Conta registada. Aguarda que a comissão ative a conta!")
+            this.authService.logOut().then(() => {
+              alert("Conta registada. Aguarda que a comissão ative a conta!")
+            })
           })
         } else if(!userData.ready){
-          alert("Esta conta ainda não está ativa! Aguarda que a comissão a ative.")
+          this.authService.logOut().then(() => {
+            alert("Esta conta ainda não está ativa! Aguarda que a comissão a ative.")
+          })
         } else {
           this.finishLogin()
         }

@@ -16,11 +16,13 @@ export class AuthService {
     private userService : UserService
   ) {
     onAuthStateChanged(this.auth,(user)=>{
-      this.user$.next(user)
       if(user){
         this.userService.getUserInfo(user.uid).subscribe((userInfo) => {
           this.userData = userInfo;
+          this.user$.next(user)
         })
+      }else{
+        this.user$.next(user)
       }
     })
   }

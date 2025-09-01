@@ -1,5 +1,5 @@
 <div class="navbar-background"></div>
-<nav class="navbar" [class.navbar-opened]="opened">
+<nav class="navbar" [class.navbar-opened]="opened" [ngStyle]="{'display':showNavbar ? 'block' : 'none'}">
     <ul class="navbar-nav">
         <li class="logo" (click)="triggerNavbar()">
             <a class="nav-link" [class.navlink-opened]="opened">
@@ -29,7 +29,7 @@
             </a>
         </li>
         <div class="nav-item-container">
-            <li class="nav-item" (click)="triggerNavbar()">
+            <li class="nav-item" (click)="opened = false">
                 <a [routerLink]="['/quotas']" class="nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                         <path 
@@ -44,7 +44,7 @@
                     <span class="link-text">Quotas</span>
                 </a>
             </li>
-            <li class="nav-item" (click)="triggerNavbar()">
+            <li class="nav-item" (click)="opened = false">
                 <a [routerLink]="['/calendario']" class="nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                         <path 
@@ -76,7 +76,7 @@
                     <span class="link-text">Atas</span>
                 </a>
             </li>
-            <li class="nav-item" (click)="triggerNavbar()">
+            <li class="nav-item" (click)="opened = false">
                 <a [routerLink]="['/regras']" class="nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path 
@@ -93,7 +93,7 @@
                     <span class="link-text">Regras</span>
                 </a>
             </li>
-            <li class="nav-item" (click)="triggerNavbar()">
+            <li class="nav-item" (click)="opened = false" *ngIf="admin">
                 <a [routerLink]="['/admin']" class="nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="scale: 1.5;">
                         <path 
