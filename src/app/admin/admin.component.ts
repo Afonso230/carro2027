@@ -105,9 +105,9 @@ export class AdminComponent {
     var ultimaData = new Date(ultimoAno, ultimoMes + 1, 1);
   
     for (
-      var dataAescrever = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 1); 
+      var dataAescrever = new Date(hoje.getFullYear(), hoje.getMonth(), 1); 
       dataAescrever < ultimaData;
-      dataAescrever.setMonth(dataAescrever.getMonth() + 1)
+      dataAescrever.setMonth(dataAescrever.getMonth() +1)
     ) {
       var stringMes = dataAescrever.toLocaleDateString('pt-PT', { month: 'long', year: 'numeric' });
       var stringMesApresentada = stringMes.charAt(0).toUpperCase() + stringMes.slice(1);   
@@ -118,6 +118,7 @@ export class AdminComponent {
       });
       numeroValue++
     }
+    console.log(this.meses)
   }
   
   getMonthForId(monthId){
