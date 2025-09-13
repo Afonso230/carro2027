@@ -14,7 +14,7 @@
 
 @font-face {
     font-family: nav-bar;
-    src: url(/assets/fonts/BebasNeue-Regular.otf);
+    src: url(./assets/fonts/BebasNeue-Regular.otf);
 }
 
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,html {
