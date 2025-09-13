@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CalendarioService, Evento } from '../calendario.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowDayDialogComponent } from '../show-day-dialog/show-day-dialog.component';
@@ -30,7 +30,8 @@ export class CalendarioComponent {
   constructor(
     private calendarService:CalendarioService,
     private matDialog: MatDialog,
-    private dialogService : DialogService
+    private dialogService : DialogService,
+    private ref : ChangeDetectorRef
   ){}
 
   ngOnInit(){
@@ -71,29 +72,30 @@ export class CalendarioComponent {
   }
 
   buildCalendar() {
-      // first day of the month
-      var firstDay = new Date(this.year,this.month,1)
-      // last day of the month
-      var lastDay = new Date(this.year,this.month+1,0)
-      var numberDays = lastDay.getDate()
-      var cellNumber = 42
-      this.calendarDays = []
-      for(var i = 0; i < cellNumber ; i++) {
-          // day of month that's being written
-          var currentDay = i - firstDay.getDay() + 1
-          // verifying if this cell corresponds to a day in the month
-          if (currentDay>=1 && currentDay<=numberDays){
-            this.calendarDays.push({
-              day: currentDay,
-              hasEvents: this.eventList.some((event)=>{
-                var eventDay = new Date(event.data)
-                return eventDay.getDate() === currentDay && eventDay.getMonth() === this.month && eventDay.getFullYear() === this.year
-              })
-            })
-          } else {
-            this.calendarDays.push({day : ""})
-          }
-        }
+    // first day of the month
+    var firstDay = new Date(this.year,this.month,1)
+    // last day of the month
+    var lastDay = new Date(this.year,this.month+1,0)
+    var numberDays = lastDay.getDate()
+    var cellNumber = 42
+    this.calendarDays = []
+    for(var i = 0; i < cellNumber ; i++) {
+      // day of month that's being written
+      var currentDay = i - firstDay.getDay() + 1
+      // verifying if this cell corresponds to a day in the month
+      if (currentDay>=1 && currentDay<=numberDays){
+        this.calendarDays.push({
+          day: currentDay,
+          hasEvents: this.eventList.some((event)=>{
+            var eventDay = new Date(event.data)
+            return eventDay.getDate() === currentDay && eventDay.getMonth() === this.month && eventDay.getFullYear() === this.year
+          })
+        })
+      } else {
+        this.calendarDays.push({day : ""})
+      }
+    }
+    this.ref.detectChanges()      
   }
 
   openDay(day: number) {
