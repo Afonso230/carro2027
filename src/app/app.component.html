@@ -1,4 +1,4 @@
-<div class="navbar-background"></div>
+<div class="navbar-background" [ngStyle]="{'display':showNavbar ? 'block' : 'none'}"></div>
 <nav class="navbar" [class.navbar-opened]="opened" [ngStyle]="{'display':showNavbar ? 'block' : 'none'}">
     <ul class="navbar-nav">
         <li class="logo" (click)="triggerNavbar()">
