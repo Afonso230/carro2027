@@ -57,6 +57,7 @@ export class RegisterDialogComponent {
     var positionOfSpace = displayName.indexOf(" ");
     var firstName = positionOfSpace < 0 ? displayName : displayName.substring(0,displayName.indexOf(" "))
     var lastName = displayName.substring(displayName.length - displayName.split("").reverse().join("").indexOf(" "))
+    this.authService.updateUserProfile(displayName);
     this.userService.registerUser(user.user.uid,firstName + " " + lastName).then(()=>{
       this.authService.logOut().then(() => {
         alert("O utlizador foi resgistado. Espera que a comissão te adicione")

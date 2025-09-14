@@ -16,11 +16,13 @@ export class AuthorizationGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.authService.getUserData()?.role === "admin"){
-        return true;
-      }
-      alert("Funcionalidade apenas disponivel para administradores.")
-      return false;
+      return this.authService.getUserData().then((userData) => {
+        if(userData?.role === "admin"){
+          return true;
+        }
+        alert("Funcionalidade apenas disponivel para administradores.")
+        return false;
+      })
   }
   
 }

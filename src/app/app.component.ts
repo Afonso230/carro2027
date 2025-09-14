@@ -38,16 +38,20 @@ export class AppComponent {
   }
 
   checkAuthentication() {
-    this.authService.user$.subscribe((user) => {
-      if(user){
-        if(this.authService.getUserData()?.role === "admin"){
-          this.admin = true;
+    this.authService.auth.authStateReady().then(() => {
+      this.authService.user$.subscribe((user) => {
+        if(user){
+          this.authService.getUserData().then((userData) => {
+            if(userData?.role === "admin"){
+              this.admin = true;
+            }
+            this.nome = userData?.name
+          })
+          this.showNavbar = true;
+        }else{
+          this.showNavbar = false;
         }
-        this.nome = this.authService.getUserData()?.name
-        this.showNavbar = true;
-      }else{
-        this.showNavbar = false;
-      }
+      })
     })
   }
 

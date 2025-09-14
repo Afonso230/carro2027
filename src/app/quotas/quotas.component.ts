@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { QuotasService } from '../quotas.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from '../user.service';
@@ -52,7 +52,8 @@ export class QuotasComponent {
   private quotasService : QuotasService,
   private breakPointObserver : BreakpointObserver,
   private userService : UserService,
-  private authService : AuthService
+  private authService : AuthService,
+  private ref: ChangeDetectorRef
  ){
  }
 
@@ -83,6 +84,7 @@ export class QuotasComponent {
         }
         this.unpaidQuotas = value
         this.dataSourceUnpaid = new MatTableDataSource(this.unpaidQuotas);
+        this.ref.detectChanges()
       })
 
       this.quotasService.getPaidQuotasForUser(this.userId).subscribe((value) => {
@@ -93,7 +95,8 @@ export class QuotasComponent {
           quota.month = this.getMonthStringFromMonthCode(quota.month)
         }
         this.paidQuotas = value
-        this.dataSourcePaid = new MatTableDataSource(this.paidQuotas);;
+        this.dataSourcePaid = new MatTableDataSource(this.paidQuotas);
+        this.ref.detectChanges()
       })
 
     }

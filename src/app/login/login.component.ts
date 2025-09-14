@@ -4,7 +4,7 @@ import { MatDialog} from '@angular/material/dialog';
 import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
 
 @Component({
@@ -23,7 +23,8 @@ export class LoginComponent {
   private matDialog: MatDialog,
   private authService : AuthService,
   private userService : UserService,
-  private router : Router
+  private router : Router,
+  private activatedRoute : ActivatedRoute
   ){}
 
   ngOnInit() {
@@ -92,7 +93,14 @@ export class LoginComponent {
   finishLogin(){
     this.authService.user$.subscribe((user)=>{
       if(user){
-        this.router.navigateByUrl("/quotas")
+        this.activatedRoute.queryParams.subscribe((params) => {
+          var returnUrl = params["returnUrl"];
+          if(returnUrl){
+            this.router.navigateByUrl(returnUrl)
+          }else{
+            this.router.navigateByUrl("/quotas")
+          }
+        })
       }
     })
   }
