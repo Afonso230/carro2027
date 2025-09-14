@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { User, UserService } from '../user.service';
 import { MonthQuotas, QuotasService } from '../quotas.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -73,7 +73,8 @@ export class AdminComponent {
     private matDialog: MatDialog,
     private dialogService : DialogService,
     private breakPointObserver : BreakpointObserver,
-    private accountService : AccountService
+    private accountService : AccountService,
+    private ref: ChangeDetectorRef
   ){
   }
 
@@ -139,6 +140,7 @@ export class AdminComponent {
         accountTotal : balance.income - balance.expenses,
         totalValue : balance.income - balance.expenses + balance.handTotal
       }
+      this.ref.detectChanges()
     })
   }
 
@@ -192,6 +194,7 @@ export class AdminComponent {
       this.usersPayments = usersMonthQuotas;
       this.dataSource = new MatTableDataSource(this.usersPayments);
       this.valor = quotas.valor
+      this.ref.detectChanges()
     })
   }
 
