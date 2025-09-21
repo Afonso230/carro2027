@@ -301,20 +301,22 @@ export class AdminComponent {
                   }
                 })
     dialog.afterClosed().subscribe((value)=>{
-      switch(valueType){
-        case 0 : 
-        this.accountService.setIncomeValue(currentValue + value) 
-        break
-        case 1 :
-        this.accountService.setExpensesValue(currentValue + value) 
-        break
-        case 2 :
-        this.accountService.setHandValue(currentValue + value) 
-        break
-        case 3 :
-        this.accountService.setHandValue(this.accountInfo.handTotal - value) 
-        this.accountService.setIncomeValue(this.accountInfo.income + value)
-        break
+      if(value){
+        switch(valueType){
+          case 0 : 
+          this.accountService.setIncomeValue(currentValue + value) 
+          break
+          case 1 :
+          this.accountService.setExpensesValue(currentValue + value) 
+          break
+          case 2 :
+          this.accountService.setHandValue(currentValue + value) 
+          break
+          case 3 :
+          this.accountService.setHandValue(this.accountInfo.handTotal - value) 
+          this.accountService.setIncomeValue(this.accountInfo.income + value)
+          break
+        }
       }
     })
   }
