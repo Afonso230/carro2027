@@ -5,25 +5,25 @@
                 <div class="dashboard-grid">
                     <div class="total-container grid-element">
                         <h3 class="element-title">Valor Total:</h3>
-                        <h2 class="element-value">{{accountInfo?.totalValue}}€</h2>
+                        <h2 class="element-value">{{accountInfo?.totalValue | number:'1.2-2'}}€</h2>
                     </div> 
                     <div class="lucros-container grid-element">
                         <h3 class="element-title">Entradas:</h3>
-                        <h2 class="element-value">{{accountInfo?.income}}€</h2>
+                        <h2 class="element-value">{{accountInfo?.income | number:'1.2-2'}}€</h2>
                         <button mat-mini-fab color="primary" class="add-value-button" (click)="changeValue(0)">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
                     <div class="despesas-container grid-element">
                         <h3 class="element-title">Saídas:</h3>
-                        <h2 class="element-value">{{accountInfo?.expenses}}€</h2>
+                        <h2 class="element-value">{{accountInfo?.expenses | number:'1.2-2'}}€</h2>
                         <button mat-mini-fab color="primary" class="add-value-button" (click)="changeValue(1)">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
                     <div class="mao-container grid-element">
                         <h3 class="element-title">Valor em mão:</h3>
-                        <h2 class="element-value">{{accountInfo?.handTotal}}€</h2>
+                        <h2 class="element-value">{{accountInfo?.handTotal | number:'1.2-2'}}€</h2>
                         <div class="add-value-button">
                             <button mat-mini-fab color="primary" class="transfer-value-button" (click)="changeValue(3)">
                                 <mat-icon>compare_arrows</mat-icon>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="conta-container grid-element">
                             <h3 class="element-title">valor conta:</h3>
-                            <h2 class="element-value">{{accountInfo?.accountTotal}}€</h2>
+                            <h2 class="element-value">{{accountInfo?.accountTotal | number:'1.2-2'}}€</h2>
                     </div>
                 </div>
             </div>
