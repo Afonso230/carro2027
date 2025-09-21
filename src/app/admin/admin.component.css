@@ -130,6 +130,12 @@ td , th{
     right: 5px;
 }
 
+.transfer-value-button{
+    position: absolute;
+    bottom: 5px;
+    right: 50px;
+}
+
 .user-button {
     border: 1px solid #000;
     border-radius: 5px;

@@ -21,4 +21,15 @@ export class AccountService {
     return this.storageService.getData(`balance`) 
   }
 
+  setIncomeValue(value){
+    return this.storageService.setData(`balance/income`, value)
+  }
+
+  setExpensesValue(value){
+    return this.storageService.setData(`balance/expenses`, value)
+  }
+
+  setHandValue(value){
+    return this.storageService.setData(`balance/handTotal`, value)
+  }
 }

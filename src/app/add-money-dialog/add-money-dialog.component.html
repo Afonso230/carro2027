@@ -1,0 +1,21 @@
+<mat-dialog-content>
+  <div class="header">
+    <h1 class="header-title">{{data.title}}</h1>
+    <button mat-icon-button (click)="fecharDialogo()" style="align-self:end;">
+        <mat-icon fontIcon="close"></mat-icon>
+    </button>
+  </div>
+
+  <h2> Valor atual: {{data.value}}€</h2>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Quantia</mat-label>
+      <input matInput placeholder="Ex. 100€" [(ngModel)]="valorAdicionar" name="valorAdicionar" type="number">
+    </mat-form-field>
+  </form>
+  <mat-dialog-actions>
+      <div class="add-button">
+          <button mat-raised-button color="primary" (click)="finishAdding()">Adicionar</button>
+      </div>
+  </mat-dialog-actions>
+</mat-dialog-content>

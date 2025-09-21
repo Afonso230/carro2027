@@ -14,9 +14,7 @@ interface CompleteRegisterUserDialofData{
   styleUrl: './complete-register-dialog.component.css'
 })
 export class CompleteRegisterDialogComponent {
-
-
-
+  
   userTypes
   type
   role

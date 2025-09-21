@@ -14,6 +14,7 @@ import { CalendarioService, Evento } from '../calendario.service';
 import { AccountService } from '../account.service';
 import { increment } from '@angular/fire/database';
 import { CompleteRegisterDialogComponent } from '../complete-register-dialog/complete-register-dialog.component';
+import { AddMoneyDialogComponent } from '../add-money-dialog/add-money-dialog.component';
 
 export interface UserMonthQuota {
   id : string;
@@ -268,6 +269,54 @@ export class AdminComponent {
     if(userConfirm){
       this.calendarioService.deleteEvent(event)
     }
+  }
+
+  changeValue(valueType:number){
+    var dialogTitle 
+    var currentValue 
+    switch(valueType){
+      case 0 : 
+      dialogTitle = "Entradas"
+      currentValue = this.accountInfo.income 
+      break
+      case 1 :
+      dialogTitle = "Saídas"
+      currentValue = this.accountInfo.expenses 
+      break
+      case 2 :
+      dialogTitle = "Valor em Mão"
+      currentValue = this.accountInfo.handTotal 
+      break
+      case 3 :
+      dialogTitle = "Tranferir valor em mão para conta"
+      currentValue = this.accountInfo.handTotal 
+      break
+    }
+    console.log(this.accountInfo)
+    var dialog = this.matDialog.open(AddMoneyDialogComponent,{
+                  ...this.dialogService.getGenericDialogConfig(),
+                  data: {
+                    value : currentValue,
+                    title : dialogTitle,
+                  }
+                })
+    dialog.afterClosed().subscribe((value)=>{
+      switch(valueType){
+        case 0 : 
+        this.accountService.setIncomeValue(currentValue + value) 
+        break
+        case 1 :
+        this.accountService.setExpensesValue(currentValue + value) 
+        break
+        case 2 :
+        this.accountService.setHandValue(currentValue + value) 
+        break
+        case 3 :
+        this.accountService.setHandValue(this.accountInfo.handTotal - value) 
+        this.accountService.setIncomeValue(this.accountInfo.income + value)
+        break
+      }
+    })
   }
 }
 
