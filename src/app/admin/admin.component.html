@@ -24,12 +24,14 @@
                     <div class="mao-container grid-element">
                         <h3 class="element-title">Valor em mão:</h3>
                         <h2 class="element-value">{{accountInfo?.handTotal}}€</h2>
-                        <button mat-mini-fab color="primary" class="add-value-button" (click)="changeValue(2)">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="primary" class="transfer-value-button" (click)="changeValue(3)">
-                            <mat-icon>compare_arrows</mat-icon>
-                        </button>
+                        <div class="add-value-button">
+                            <button mat-mini-fab color="primary" class="transfer-value-button" (click)="changeValue(3)">
+                                <mat-icon>compare_arrows</mat-icon>
+                            </button>
+                            <button mat-mini-fab color="primary" class="add-value-button" (click)="changeValue(2)">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
                     </div>
                     <div class="conta-container grid-element">
                             <h3 class="element-title">valor conta:</h3>
