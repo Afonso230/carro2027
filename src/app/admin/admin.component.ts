@@ -98,7 +98,7 @@ export class AdminComponent {
   }
 
   gerarMeses() {
-    var hoje = new Date();
+    var firstQuota = new Date(2025,8,1);
 
     var ultimoAno = 2026;
     var ultimoMes = 6; 
@@ -107,7 +107,7 @@ export class AdminComponent {
     var ultimaData = new Date(ultimoAno, ultimoMes + 1, 1);
   
     for (
-      var dataAescrever = new Date(hoje.getFullYear(), hoje.getMonth(), 1); 
+      var dataAescrever = new Date(firstQuota.getFullYear(), firstQuota.getMonth(), 1); 
       dataAescrever < ultimaData;
       dataAescrever.setMonth(dataAescrever.getMonth() +1)
     ) {
