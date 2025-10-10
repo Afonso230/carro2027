@@ -3,6 +3,7 @@ import { MonthData } from '../admin/admin.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { QuotasService } from '../quotas.service';
 import { AgChartOptions } from 'ag-charts-community';
+import { AccountService } from '../account.service';
 
 export interface AddPaymentData {
   id : string,
@@ -19,6 +20,7 @@ export interface AddPaymentData {
 })
 export class AddPaymentDialogComponent {
   
+  typeOfPayment : number
   paymentDate : Date;
   today = new Date();
   totalValue :number;
@@ -27,7 +29,8 @@ export class AddPaymentDialogComponent {
   constructor(
     public dialogRef : MatDialogRef<AddPaymentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data : AddPaymentData,
-    private quotasService : QuotasService
+    private quotasService : QuotasService,
+    private accountService : AccountService
   ){}
 
   ngOnInit(){
@@ -67,7 +70,18 @@ export class AddPaymentDialogComponent {
   }
 
   addPayment(){
+    if(!this.typeOfPayment){
+      alert("Escolhe um tipo de pagamento")
+      return
+    }
     this.quotasService.setQuotaPayment(this.data.month.id,this.data.id,this.paymentDate.getTime()).then(()=>{
+      this.accountService.getAccountBalance().subscribe((balance)=>{
+        if(this.typeOfPayment === 1){
+          this.accountService.setIncomeValue(balance.income + this.totalValue)
+        } else if (this.typeOfPayment === 2){
+          this.accountService.setHandValue(balance.handTotal + this.totalValue)
+        }
+      })
       this.dialogRef.close()
     })
   }

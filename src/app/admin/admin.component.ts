@@ -120,7 +120,6 @@ export class AdminComponent {
       });
       numeroValue++
     }
-    console.log(this.meses)
   }
   
   getMonthForId(monthId){

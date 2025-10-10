@@ -7,6 +7,10 @@
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+    <mat-radio-group [(ngModel)]="typeOfPayment" aria-label="Select an option">
+        <mat-radio-button value="1">MbWay</mat-radio-button>
+        <mat-radio-button value="2">Entregue em Mão</mat-radio-button>
+    </mat-radio-group>
     <h4>Valor do pagamento: {{totalValue}}</h4>
     <div class="add-button">
         <button mat-raised-button color="primary" (click)="addPayment()">Adicionar pagamento</button>

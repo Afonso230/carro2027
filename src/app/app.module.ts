@@ -42,7 +42,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
 import { MatListModule } from '@angular/material/list';
 import { CompleteRegisterDialogComponent } from './complete-register-dialog/complete-register-dialog.component';
-import { AddMoneyDialogComponent } from './add-money-dialog/add-money-dialog.component'
+import { AddMoneyDialogComponent } from './add-money-dialog/add-money-dialog.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 registerLocaleData(localePt)
 
@@ -87,7 +88,8 @@ registerLocaleData(localePt)
     AgChartsModule,
     AgCharts,
     MatSortModule,
-    MatListModule
+    MatListModule,
+    MatRadioModule
   ],
   providers: [
     provideClientHydration(),
