@@ -47,7 +47,7 @@ export interface MonthData{
 export class AdminComponent {
 
   meses: any[] = [];
-  selectedMonth = "set2025"
+  selectedMonth
 
 
   monthCodes = ["set2025","out2025","nov2025","dez2025","jan2026","feb2026","mar2026","abr2026","mai2026","jun2026","jul2026"]
@@ -105,6 +105,8 @@ export class AdminComponent {
     var numeroValue = 0
 
     var ultimaData = new Date(ultimoAno, ultimoMes + 1, 1);
+
+    var today = new Date();
   
     for (
       var dataAescrever = new Date(firstQuota.getFullYear(), firstQuota.getMonth(), 1); 
@@ -118,6 +120,10 @@ export class AdminComponent {
         id: this.monthCodes[numeroValue],
         mes: stringMesApresentada
       });
+
+      if(!this.selectedMonth && dataAescrever.getMonth() === today.getMonth() && dataAescrever.getFullYear() === today.getFullYear()){
+        this.selectedMonth = this.monthCodes[numeroValue];
+      }
       numeroValue++
     }
   }
